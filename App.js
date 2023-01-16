@@ -2,6 +2,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
+import { HomeScreen } from './components/home'
+import { WorkersScreen } from './components/workers'
+import { FarmsScreen } from './components/farms'
+import { AccountScreen } from './components/account'
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -14,13 +19,13 @@ export default function App() {
             case "Home":
               iconName=focused ? 'home-sharp' : 'home-outline';
               break;
-            case "Countries":
+            case "Workers":
               iconName=focused ? 'flag-sharp' : 'flag-outline';
               break;
-            case "Continents":
+            case "Farms":
               iconName=focused ? 'earth' : 'earth-outline';
               break;
-            case "Search":
+            case "Account":
               iconName=focused ? 'search-circle' : 'search-circle-outline';
               break;
           }
@@ -30,20 +35,11 @@ export default function App() {
         tabBarInactiveTintColor: 'gray',
       })}
       >
-        <Tab.Screen name="" component={}/>
-        <Tab.Screen name="" component={}/>
-        <Tab.Screen name="" component={}/>
-        <Tab.Screen name="" component={}/>
+        <Tab.Screen name="Home" component={HomeScreen}/>
+        <Tab.Screen name="Workers" component={WorkersScreen}/>
+        <Tab.Screen name="Farms" component={FarmsScreen}/>
+        <Tab.Screen name="Account" component={AccountScreen}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
