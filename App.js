@@ -1,12 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Our app for project 4.0</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={({route}) => ({
+        tabBarIcon:({focused, color, size}) => {
+          let iconName;
+          switch (route.name){
+            case "Home":
+              iconName=focused ? 'home-sharp' : 'home-outline';
+              break;
+            case "Countries":
+              iconName=focused ? 'flag-sharp' : 'flag-outline';
+              break;
+            case "Continents":
+              iconName=focused ? 'earth' : 'earth-outline';
+              break;
+            case "Search":
+              iconName=focused ? 'search-circle' : 'search-circle-outline';
+              break;
+          }
+          return <Ionicons name={iconName} size={size} color={color}/>
+        },
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}
+      >
+        <Tab.Screen name="" component={}/>
+        <Tab.Screen name="" component={}/>
+        <Tab.Screen name="" component={}/>
+        <Tab.Screen name="" component={}/>
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
