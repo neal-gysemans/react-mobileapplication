@@ -20,11 +20,16 @@ import WorkerItem from "./workers/worker_item";
 import { useRecoilValue } from "recoil";
 import { farmState } from "../store";
 
-export default function WorkersScreen({ navigation}) {
+// Theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
+
+export default function WorkersScreen() {
+  // Styling (theme)
+  let style = useThemedStyles(styles);
+
   const farmId = useRecoilValue(farmState);
   const {data, loading, error} = useQuery(GET_WORKERS_FROM_FARM, { variables: {farmId}, skip: farmId === 0});
-  const style = useThemedStyles(styles);
-
 
   if (loading) return <Fetching />
   if (error) return <Error error={error} />
@@ -54,4 +59,3 @@ export default function WorkersScreen({ navigation}) {
     </View>
     );
 }
-

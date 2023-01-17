@@ -24,10 +24,9 @@
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
     "react-native-elements": "^3.4.3",
-    "recoil": "^0.7.6",
     "react-native-web": "~0.18.9",
     "react-navigation": "^4.4.4",
-    "expo-camera": "~13.1.0"
+    "recoil": "^0.7.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

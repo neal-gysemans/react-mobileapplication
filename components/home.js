@@ -11,11 +11,12 @@ export default function HomeScreen({ navigation }) {
     // Styling (theme)
     const style = useThemedStyles(styles);
 
+    // Size of icon
     const size = 40;
     return (
         <View style={style.body}>
-            <TouchableOpacity style={style.homeScreenCameraButton} onPress={() => {navigation.navigate('Camera')}}>
-                <Icon name="camera-iris" size={size} style={style.cameraButtonText}/>
+            <TouchableOpacity style={style.largeCameraButton} onPress={() => {navigation.navigate('Camera')}}>
+                <Icon name="camera-iris" size={size} style={style.largeButtonText}/>
             </TouchableOpacity>
         </View>
     );

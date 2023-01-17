@@ -10,15 +10,17 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {RecoilRoot} from 'recoil';
 import { Ionicons } from '@expo/vector-icons';
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
-
 // Import for screens
 import HomeScreen from './components/home'
 import WorkersScreen from './components/workers'
 import FarmsScreen from './components/farms'
 import AccountScreen from './components/account'
-import CameraScreen from './components/photoScreen'
+import PhotoScreen from './components/photoScreen'
+
+// Provider
+import ThemeProvider from './styles/theme/ThemeProvider';
+
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import configData from './config/hasura.json';
 
 import WorkerDetails from './components/workers/worker_details';
@@ -112,7 +114,7 @@ export default function App() {
             <Tab.Screen name="Workers" component={WorkerStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Farms" component={FarmStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Account" component={AccountScreen}/>
-            <Tab.Screen name="Camera" component={CameraScreen}/>
+            <Tab.Screen name="Camera" component={PhotoScreen}/>
           </Tab.Navigator>
         </NavigationContainer>
       </ApolloProvider>

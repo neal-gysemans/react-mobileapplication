@@ -1,16 +1,15 @@
 import { Text, StyleSheet  } from 'react-native';
+// Theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
 
 export default function Error({ error }) {
+  // Styling (theme)
+  let style = useThemedStyles(styles);
+
   return (
-    <Text style={styles.error}>Error! {error.message}</Text>
+    <View style={style.body}>
+      <Text style={[style.error, style.text]}>Error! {error.message}</Text>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  error: {
-    fontSize: 15,
-    padding: 8,
-    color: 'darkred',
-    fontWeight: 'bold'
-  },
-});

@@ -21,6 +21,9 @@ export const styles = theme =>
         text: {
             color: theme.colors.TEXT,
         },
+        textBG_COLOR: {
+            color: theme.colors.BACKGROUND,
+        },
         camera: {
             width: "100%",
             height: "100%",
@@ -39,7 +42,7 @@ export const styles = theme =>
         },
         cameraButton: {
             borderRadius: 50,
-            backgroundColor: theme.colors.TEXT,
+            backgroundColor: theme.colors.BACKGROUND,
             width: 50,
             height: 50,
             display: "flex",
@@ -48,7 +51,6 @@ export const styles = theme =>
         },
         takePictureButton: {
             borderRadius: 50,
-            backgroundColor: theme.colors.TEXT,
             width: 50,
             height: 50,
             display: "flex",
@@ -56,16 +58,53 @@ export const styles = theme =>
             alignItems: "center",
         },
         cameraButtonText: {
-            color: theme.colors.BACKGROUND,
+            color: theme.colors.TEXT,
         },
-        homeScreenCameraButton: {
+        largeCameraButton: {
             width: "100%",
             height: 120,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: theme.colors.TEXT,
-            
+        },
+        largeCameraButtonText: {
+            color: theme.colors.BACKGROUND,
+        },
+        newPhotoButton: {
+            position: "absolute",
+            top: 25,
+            left: 25,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 50,
+            width: 50,
+            borderRadius: 50,
+            backgroundColor: theme.colors.TEXT
+        },
+        usePhotoButton: {
+            position: "absolute",
+            bottom: 25,
+            left: 25,
+            right: 25,
+            height: 60,
+            backgroundColor: theme.colors.TEXT,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        },
+        img: {
+            width: "100%",
+            height: "100%",
+        },
+        error: {
+          fontSize: 15,
+          color: 'darkred',
+          fontWeight: 'bold'
+        },
+        loading: {
+          fontSize: 15,
         },
         name: {
             fontSize: 30,
@@ -100,5 +139,4 @@ export const styles = theme =>
             textAlign: 'center',
             marginRight: 20,
           },
-
     });

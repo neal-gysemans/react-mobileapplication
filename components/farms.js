@@ -20,10 +20,16 @@ import FarmItem from "./farms/farm_item";
 import { useRecoilValue } from "recoil";
 import { farmState } from "../store";
 
-export default function FarmsScreen({navigation}) {
+// Theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
+
+export default function FarmsScreen() {
+    // Styling (theme)
+    let style = useThemedStyles(styles);
+
     const farmId = useRecoilValue(farmState);
     const {data, loading, error} = useQuery(GET_FIELDOWNER_FARMS, { variables: {farmId}, skip: farmId === 0});
-    const style = useThemedStyles(styles);
 
 
     if (loading) return <Fetching />
