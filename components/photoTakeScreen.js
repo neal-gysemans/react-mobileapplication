@@ -23,7 +23,6 @@ export default function TakePhotoScreen({ navigation }) {
     const [camera, setCamera] = useState(null);
     const [image, setImage] = useState(null);
     const [type, setType] = useState(CameraType.back);
-    const [isFlash, setIsFlash] = useState(true);
 
     useEffect(() => {
         (async () => {
