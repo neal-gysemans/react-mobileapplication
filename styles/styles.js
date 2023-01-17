@@ -128,9 +128,9 @@ export const styles = theme =>
         listItem:{
             fontSize: 20,
             color: theme.colors.TEXT,
-            alignContent: 'center',
+            display: "flex",
+            alignItems: "center",
             height: 50,
-            textAlignVertical: 'center',
         },
         circle: {
             width: 50,
@@ -138,10 +138,11 @@ export const styles = theme =>
             fontSize: 20,
             borderRadius: 50,
             color: 'white',
-            textAlignVertical: 'center',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
             fontSize: 10,
             backgroundColor: 'tomato',
-            textAlign: 'center',
             marginRight: 20,
           },
     });

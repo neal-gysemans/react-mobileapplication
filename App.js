@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
 // Icons
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -26,7 +25,6 @@ import configData from './config/hasura.json';
 import WorkerDetails from './components/workers/worker_details';
 import FarmDetails from './components/farms/farm_details';
 import FieldDetails from './components/fields/field_details';
-
 
 const Tab = createBottomTabNavigator();
 
