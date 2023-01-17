@@ -1,4 +1,5 @@
 // Navigation
+// Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -7,6 +8,15 @@ import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {RecoilRoot} from 'recoil';
 import { Ionicons } from '@expo/vector-icons';
+
+// Import for screens
+import HomeScreen from './components/home'
+import WorkersScreen from './components/workers'
+import FarmsScreen from './components/farms'
+import AccountScreen from './components/account'
+import CameraScreen from './components/photoScreen'
+// Provider
+import ThemeProvider from './styles/theme/ThemeProvider';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
