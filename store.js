@@ -2,7 +2,7 @@ import { atom, Selector } from 'recoil';
 
 export const farmState = atom({
     key: 'farmState', // unique ID (with respect to other atoms/selectors)
-    default: '0', // default value (aka initial value)
+    default: 1, // default value (aka initial value)
 });
 
 export const todoListState = atom({

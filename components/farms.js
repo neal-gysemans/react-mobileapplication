@@ -1,15 +1,23 @@
 import { FlatList, View, StyleSheet } from "react-native"
-import { FAB } from 'react-native-elements';
 
+// apollo, queries
 import { useQuery } from "@apollo/client";
 import { GET_FIELDOWNER_FARMS } from "../gql/queries";
 
+//theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
+
+// Layout
 import Separator from "../layout/seperator";
 import Fetching from '../layout/message_fetching';
 import Error from '../layout/message_error';
-import FarmItem from "./farm_item";
+
+// Item in list
+import FarmItem from "./farms/farm_item";
+
+// recoil
 import { useRecoilValue } from "recoil";
-import { useState } from "react";
 import { farmState } from "../store";
 
 // Theme
@@ -22,27 +30,25 @@ export default function FarmsScreen() {
 
     const farmId = useRecoilValue(farmState);
     const {data, loading, error} = useQuery(GET_FIELDOWNER_FARMS, { variables: {farmId}, skip: farmId === 0});
-  
+
+
     if (loading) return <Fetching />
     if (error) return <Error error={error} />
       
     if (data) {
       console.log('farm: ', data.farm)
     }
+    function handleDetails(item){
+      navigation.navigate('FarmDetails', { id: item.id });
+    }
   
       return (
         <View style={style.body}>
         <FlatList
           data={data.farm}
-          renderItem={({ item }) => <FarmItem item={item}/>}
+          renderItem={({ item }) => <FarmItem item={item} onPress={handleDetails}/>}
           keyExtractor={(item, index) => index}
           ItemSeparatorComponent={Separator}
-        />
-        <FAB
-          icon={{ name: 'add', color: 'white' }}
-          size="large"
-          placement="right"
-          color="tomato"
         />
       </View>
       );
