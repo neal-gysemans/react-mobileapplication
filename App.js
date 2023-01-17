@@ -11,6 +11,7 @@ import HomeScreen from './components/home'
 import WorkersScreen from './components/workers'
 import FarmsScreen from './components/farms'
 import AccountScreen from './components/account'
+import CameraScreen from './components/photoScreen'
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
 
@@ -34,9 +35,12 @@ export default function App() {
                 case "Farms":
                   iconName = 'tractor';
                   break;
-                case "Account":
-                  iconName = 'account';
-                  break;
+                  case "Account":
+                    iconName = 'account';
+                    break;
+                  case "Camera":
+                    iconName = 'camera';
+                    break;
               }
               return <Icon name={iconName} size={size} color={color}/>
             },
@@ -50,6 +54,7 @@ export default function App() {
             <Tab.Screen name="Workers" component={WorkersScreen}/>
             <Tab.Screen name="Farms" component={FarmsScreen}/>
             <Tab.Screen name="Account" component={AccountScreen}/>
+            <Tab.Screen name="Camera" component={CameraScreen}/>
           </Tab.Navigator>
         </NavigationContainer>
       </IconComponentProvider>
