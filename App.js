@@ -15,22 +15,12 @@ import WorkersScreen from './components/workers'
 import FarmsScreen from './components/farms'
 import AccountScreen from './components/account'
 import PhotoScreen from './components/photoScreen'
+
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
-
-// Import for screens
-import HomeScreen from './components/home'
-import WorkersScreen from './components/workers'
-import FarmsScreen from './components/farms'
-import AccountScreen from './components/account'
-import CameraScreen from './components/photoScreen'
 import configData from './config/hasura.json';
-
-// Provider
-import ThemeProvider from './styles/theme/ThemeProvider';
 
 const Tab = createBottomTabNavigator();
 

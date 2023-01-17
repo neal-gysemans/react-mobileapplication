@@ -12,7 +12,14 @@ import { useRecoilValue } from "recoil";
 import { useState } from "react";
 import { farmState } from "../store";
 
+// Theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
+
 export default function WorkersScreen() {
+  // Styling (theme)
+  let style = useThemedStyles(styles);
+
   const farmId = useRecoilValue(farmState);
   const {data, loading, error} = useQuery(GET_WORKERS_FROM_FARM, { variables: {farmId}, skip: farmId === 0});
 
@@ -24,7 +31,7 @@ export default function WorkersScreen() {
   }
 
     return (
-      <View style={styles.container}>
+      <View style={style.body}>
       <FlatList
         data={data.farmStaff}
         renderItem={({ item }) => <WorkerItem item={item}/>}
@@ -40,9 +47,3 @@ export default function WorkersScreen() {
     </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1
-    },
-  });

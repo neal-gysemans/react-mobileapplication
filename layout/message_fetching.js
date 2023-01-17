@@ -1,14 +1,15 @@
-import { Text, StyleSheet  } from 'react-native';
+import { Text, StyleSheet, View  } from 'react-native';
+
+// Theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
 
 export default function Fetching() {
+  // Styling (theme)
+  let style = useThemedStyles(styles);
   return (
-    <Text style={styles.loading}>Fetching data...</Text>
+    <View style={style.body}>
+      <Text style={[style.loading, style.text]}>Fetching data...</Text>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  loading: {
-    fontSize: 15,
-    padding: 8
-  },
-});

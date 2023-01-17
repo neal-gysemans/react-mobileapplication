@@ -6,10 +6,14 @@ export const styles = theme =>
             padding: 15,
             flex: 1,
             backgroundColor: theme.colors.BACKGROUND,
-            alignItems: 'center',
+            alignItems: "center",
+            position: "relative",
         },
         text: {
             color: theme.colors.TEXT,
+        },
+        textBG_COLOR: {
+            color: theme.colors.BACKGROUND,
         },
         camera: {
             width: "100%",
@@ -55,6 +59,40 @@ export const styles = theme =>
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: theme.colors.TEXT,
-            
-        }
+        },
+        newPhotoButton: {
+            position: "absolute",
+            top: 25,
+            left: 25,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 50,
+            width: 50,
+            borderRadius: 50,
+            backgroundColor: theme.colors.TEXT
+        },
+        usePhotoButton: {
+            position: "absolute",
+            bottom: 25,
+            left: 25,
+            right: 25,
+            height: 60,
+            backgroundColor: theme.colors.TEXT,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        },
+        img: {
+            width: "100%",
+            height: "100%",
+        },
+        error: {
+          fontSize: 15,
+          color: 'darkred',
+          fontWeight: 'bold'
+        },
+        loading: {
+          fontSize: 15,
+        },
     });

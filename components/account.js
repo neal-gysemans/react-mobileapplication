@@ -11,8 +11,8 @@ import { useAuthentication } from "../hooks/use_authentication";
 
 export default function AccountScreen() {
     // Styling (theme)
-    const theme = useTheme();
     let style = useThemedStyles(styles);
+    const theme = useTheme();
 
     const { user } = useAuthentication();
 

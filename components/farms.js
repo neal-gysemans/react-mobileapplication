@@ -12,7 +12,14 @@ import { useRecoilValue } from "recoil";
 import { useState } from "react";
 import { farmState } from "../store";
 
+// Theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
+
 export default function FarmsScreen() {
+    // Styling (theme)
+    let style = useThemedStyles(styles);
+
     const farmId = useRecoilValue(farmState);
     const {data, loading, error} = useQuery(GET_FIELDOWNER_FARMS, { variables: {farmId}, skip: farmId === 0});
   
@@ -24,7 +31,7 @@ export default function FarmsScreen() {
     }
   
       return (
-        <View style={styles.container}>
+        <View style={style.body}>
         <FlatList
           data={data.farm}
           renderItem={({ item }) => <FarmItem item={item}/>}
@@ -40,9 +47,3 @@ export default function FarmsScreen() {
       </View>
       );
   }
-  
-  const styles = StyleSheet.create({
-      container: {
-        flex: 1
-      },
-    });
