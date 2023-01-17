@@ -24,6 +24,9 @@ export const styles = theme =>
         textBG_COLOR: {
             color: theme.colors.BACKGROUND,
         },
+        textBG_COLOR: {
+            color: theme.colors.BACKGROUND,
+        },
         camera: {
             width: "100%",
             height: "100%",
@@ -43,6 +46,7 @@ export const styles = theme =>
         cameraButton: {
             borderRadius: 50,
             backgroundColor: theme.colors.BACKGROUND,
+            backgroundColor: theme.colors.BACKGROUND,
             width: 50,
             height: 50,
             display: "flex",
@@ -59,7 +63,9 @@ export const styles = theme =>
         },
         cameraButtonText: {
             color: theme.colors.TEXT,
+            color: theme.colors.TEXT,
         },
+        largeCameraButton: {
         largeCameraButton: {
             width: "100%",
             height: 120,
