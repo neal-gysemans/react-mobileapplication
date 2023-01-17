@@ -1,10 +1,13 @@
 // Navigation
+// Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Icons
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import {RecoilRoot} from 'recoil';
+import { Ionicons } from '@expo/vector-icons';
 
 // Import for screens
 import HomeScreen from './components/home'
@@ -15,13 +18,38 @@ import CameraScreen from './components/photoScreen'
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
 
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+
+// Import for screens
+import HomeScreen from './components/home'
+import WorkersScreen from './components/workers'
+import FarmsScreen from './components/farms'
+import AccountScreen from './components/account'
+import CameraScreen from './components/photoScreen'
+import configData from './config/hasura.json';
+
+// Provider
+import ThemeProvider from './styles/theme/ThemeProvider';
+
 const Tab = createBottomTabNavigator();
+
+
+const client = new ApolloClient({
+  uri: configData.qlendpoint,
+  headers: {
+    'x-hasura-admin-secret': configData.qlkey
+  },
+  cache: new InMemoryCache()
+});
 
 export default function App() {
   return (
     <ThemeProvider>
-      <IconComponentProvider IconComponent={MaterialCommunityIcons}>
-        <NavigationContainer>
+    <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+      <RecoilRoot>
+      <ApolloProvider client={client}>
+      <NavigationContainer>
           <Tab.Navigator screenOptions={({route}) => ({
             tabBarIcon:({focused, color, size}) => {
               let iconName;
@@ -57,7 +85,9 @@ export default function App() {
             <Tab.Screen name="Camera" component={CameraScreen}/>
           </Tab.Navigator>
         </NavigationContainer>
-      </IconComponentProvider>
+      </ApolloProvider>
+      </RecoilRoot>
+    </IconComponentProvider>
     </ThemeProvider>
   );
 }
