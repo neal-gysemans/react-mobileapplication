@@ -11,9 +11,7 @@ export default function Separator() {
 const styles = StyleSheet.create({
   line: {
     height: 1,
-    width: "96%",
+    width: "100%",
     backgroundColor: "#CED0CE",
-    marginLeft: "2%",
-    marginRight: "2%",
   },
 });

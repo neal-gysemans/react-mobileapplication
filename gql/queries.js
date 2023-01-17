@@ -28,3 +28,37 @@ query GET_FIELDOWNER_FARMS($farmId: Int!) {
     startdate
   }
 }`;
+
+export const GET_WORKER_DETAILS = gql`
+query GET_WORKER_DETAILS($id: Int!) {
+  worker(where: {id: {_eq: $id}}) {
+    id
+    name
+    language
+    phonenumber
+    city
+    country
+    email
+  }
+}`;
+
+export const GET_FARM_DETAILS = gql`
+query GET_FARM_DETAILS($id: Int!) {
+  farm(where: {id: {_eq: $id}}) {
+    id
+    name
+    startdate
+    fields {
+      id
+      name
+    }
+  }
+}`;
+
+export const GET_FIELD = gql`
+query GET_FIELD($id: Int!) {
+  field(where: {id: {_eq: $id}}) {
+    id
+    name
+  }
+}`;

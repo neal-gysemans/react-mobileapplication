@@ -1,22 +1,14 @@
 // Navigation
-// Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 // Icons
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {RecoilRoot} from 'recoil';
 import { Ionicons } from '@expo/vector-icons';
-
-// Import for screens
-import HomeScreen from './components/home'
-import WorkersScreen from './components/workers'
-import FarmsScreen from './components/farms'
-import AccountScreen from './components/account'
-import CameraScreen from './components/photoScreen'
-// Provider
-import ThemeProvider from './styles/theme/ThemeProvider';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
@@ -28,6 +20,11 @@ import FarmsScreen from './components/farms'
 import AccountScreen from './components/account'
 import CameraScreen from './components/photoScreen'
 import configData from './config/hasura.json';
+
+import WorkerDetails from './components/workers/worker_details';
+import FarmDetails from './components/farms/farm_details';
+import FieldDetails from './components/fields/field_details';
+
 
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
@@ -42,6 +39,39 @@ const client = new ApolloClient({
   },
   cache: new InMemoryCache()
 });
+
+const WorkersStack = createNativeStackNavigator();
+
+function WorkerStackScreen() {
+  return(
+    <WorkersStack.Navigator>
+      <WorkersStack.Screen name="WorkersList" 
+      component={WorkersScreen} 
+      options={{ title: 'Employees' }}/>
+      <WorkersStack.Screen name="WorkerDetails" 
+      component={WorkerDetails} 
+      options={{ title: 'Details' }}/>
+    </WorkersStack.Navigator>
+  );
+}
+
+const FarmStack = createNativeStackNavigator();
+
+function FarmStackScreen() {
+  return(
+    <FarmStack.Navigator>
+      <FarmStack.Screen name="FarmsList" 
+      component={FarmsScreen} 
+      options={{ title: 'Farms' }}/>
+      <FarmStack.Screen name="FarmDetails" 
+      component={FarmDetails} 
+      options={{ title: 'Details' }}/>
+      <FarmStack.Screen name="FieldDetails" 
+      component={FieldDetails} 
+      options={{ title: 'Field details' }}/>
+    </FarmStack.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -79,8 +109,8 @@ export default function App() {
             },
           })}>
             <Tab.Screen name="Home" component={HomeScreen}/>
-            <Tab.Screen name="Workers" component={WorkersScreen}/>
-            <Tab.Screen name="Farms" component={FarmsScreen}/>
+            <Tab.Screen name="Workers" component={WorkerStackScreen} options={{headerShown: false}}/>
+            <Tab.Screen name="Farms" component={FarmStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Account" component={AccountScreen}/>
             <Tab.Screen name="Camera" component={CameraScreen}/>
           </Tab.Navigator>

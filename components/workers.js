@@ -1,20 +1,30 @@
-import { FlatList, View, StyleSheet } from "react-native"
-import { FAB } from 'react-native-elements';
+import { FlatList, View } from "react-native"
 
+// Apollo (to be replaced by api)
 import { useQuery } from "@apollo/client";
 import { GET_WORKERS_FROM_FARM } from "../gql/queries";
 
+//theme
+import useThemedStyles from "../styles/theme/useThemedStyles";
+import { styles } from "../styles/styles";
+
+// Layout
 import Separator from "../layout/seperator";
 import Fetching from '../layout/message_fetching';
 import Error from '../layout/message_error';
-import WorkerItem from "./worker_item";
+
+// Item
+import WorkerItem from "./workers/worker_item";
+
+// Recoil
 import { useRecoilValue } from "recoil";
-import { useState } from "react";
 import { farmState } from "../store";
 
-export default function WorkersScreen() {
+export default function WorkersScreen({ navigation}) {
   const farmId = useRecoilValue(farmState);
   const {data, loading, error} = useQuery(GET_WORKERS_FROM_FARM, { variables: {farmId}, skip: farmId === 0});
+  const style = useThemedStyles(styles);
+
 
   if (loading) return <Fetching />
   if (error) return <Error error={error} />
@@ -23,26 +33,25 @@ export default function WorkersScreen() {
     //console.log('worker: ', data.farmStaff[0].worker.id)
   }
 
-    return (
-      <View style={styles.container}>
-      <FlatList
-        data={data.farmStaff}
-        renderItem={({ item }) => <WorkerItem item={item}/>}
-        keyExtractor={(item, index) => index}
-        ItemSeparatorComponent={Separator}
-      />
-      <FAB
+  function handleDetails(item){
+    navigation.navigate('WorkerDetails', { id: item.id });
+  }
+  /*<FAB
         icon={{ name: 'add', color: 'white' }}
         size="large"
         placement="right"
         color="tomato"
+      />*/
+    return (
+      <View style={style.body}>
+      <FlatList
+        data={data.farmStaff}
+        renderItem={({ item }) => <WorkerItem item={item} onPress={handleDetails}/>}
+        keyExtractor={(item, index) => index}
+        ItemSeparatorComponent={Separator}
       />
+      
     </View>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1
-    },
-  });
