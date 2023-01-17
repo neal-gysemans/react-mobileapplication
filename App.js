@@ -11,7 +11,7 @@ import HomeScreen from './components/home'
 import WorkersScreen from './components/workers'
 import FarmsScreen from './components/farms'
 import AccountScreen from './components/account'
-import CameraScreen from './components/photoScreen'
+import PhotoScreen from './components/photoScreen'
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
 
@@ -54,7 +54,7 @@ export default function App() {
             <Tab.Screen name="Workers" component={WorkersScreen}/>
             <Tab.Screen name="Farms" component={FarmsScreen}/>
             <Tab.Screen name="Account" component={AccountScreen}/>
-            <Tab.Screen name="Camera" component={CameraScreen}/>
+            <Tab.Screen name="Camera" component={PhotoScreen}/>
           </Tab.Navigator>
         </NavigationContainer>
       </IconComponentProvider>

@@ -48,7 +48,7 @@ export const styles = theme =>
         cameraButtonText: {
             color: theme.colors.BACKGROUND,
         },
-        homeScreenCameraButton: {
+        largeCameraButton: {
             width: "100%",
             height: 120,
             display: "flex",
