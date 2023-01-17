@@ -20,10 +20,6 @@ import WorkerItem from "./workers/worker_item";
 import { useRecoilValue } from "recoil";
 import { farmState } from "../store";
 
-// Theme
-import useThemedStyles from "../styles/theme/useThemedStyles";
-import { styles } from "../styles/styles";
-
 export default function WorkersScreen() {
   // Styling (theme)
   let style = useThemedStyles(styles);
