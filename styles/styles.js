@@ -33,7 +33,7 @@ export const styles = theme =>
         },
         cameraButton: {
             borderRadius: 50,
-            backgroundColor: theme.colors.TEXT,
+            backgroundColor: theme.colors.BACKGROUND,
             width: 50,
             height: 50,
             display: "flex",
@@ -42,7 +42,6 @@ export const styles = theme =>
         },
         takePictureButton: {
             borderRadius: 50,
-            backgroundColor: theme.colors.TEXT,
             width: 50,
             height: 50,
             display: "flex",
@@ -50,7 +49,7 @@ export const styles = theme =>
             alignItems: "center",
         },
         cameraButtonText: {
-            color: theme.colors.BACKGROUND,
+            color: theme.colors.TEXT,
         },
         largeCameraButton: {
             width: "100%",
@@ -59,6 +58,9 @@ export const styles = theme =>
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: theme.colors.TEXT,
+        },
+        largeCameraButtonText: {
+            color: theme.colors.BACKGROUND,
         },
         newPhotoButton: {
             position: "absolute",
