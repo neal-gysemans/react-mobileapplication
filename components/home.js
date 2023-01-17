@@ -16,7 +16,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <View style={style.body}>
             <TouchableOpacity style={style.largeCameraButton} onPress={() => {navigation.navigate('Camera')}}>
-                <Icon name="camera-iris" size={size} style={style.largeButtonText}/>
+                <Icon name="camera-iris" size={size} style={style.largeCameraButtonText}/>
             </TouchableOpacity>
         </View>
     );

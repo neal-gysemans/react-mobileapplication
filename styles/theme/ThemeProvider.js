@@ -1,15 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import { AsyncStorage } from 'react-native';
 import { colors } from './colors';
 
 export const ThemeContext = React.createContext();
 
 const ThemeProvider = ({children}) => {
-  const [isLightTheme, setLightTheme] = useState(false);
+  const [isLightTheme, setLightTheme] = useState(true);
   const toggleTheme = () => {
     setLightTheme(previousState => !previousState);
   }
-  console.log(colors);
 
   const theme = {
     colors: isLightTheme ? colors.light : colors.dark,
