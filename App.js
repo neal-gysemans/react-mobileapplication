@@ -17,8 +17,6 @@ import FarmsScreen from './components/farms'
 import AccountScreen from './components/account'
 import PhotoScreen from './components/photoScreen'
 
-import PhotoScreen from './components/photoScreen'
-
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
 
@@ -29,9 +27,6 @@ import WorkerDetails from './components/workers/worker_details';
 import FarmDetails from './components/farms/farm_details';
 import FieldDetails from './components/fields/field_details';
 
-
-// Provider
-import ThemeProvider from './styles/theme/ThemeProvider';
 
 const Tab = createBottomTabNavigator();
 
@@ -116,7 +111,6 @@ export default function App() {
             <Tab.Screen name="Workers" component={WorkerStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Farms" component={FarmStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Account" component={AccountScreen}/>
-            <Tab.Screen name="Camera" component={PhotoScreen}/>
             <Tab.Screen name="Camera" component={PhotoScreen}/>
           </Tab.Navigator>
         </NavigationContainer>

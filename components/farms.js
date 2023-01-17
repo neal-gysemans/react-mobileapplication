@@ -4,10 +4,6 @@ import { FlatList, View, StyleSheet } from "react-native"
 import { useQuery } from "@apollo/client";
 import { GET_FIELDOWNER_FARMS } from "../gql/queries";
 
-//theme
-import useThemedStyles from "../styles/theme/useThemedStyles";
-import { styles } from "../styles/styles";
-
 // Layout
 import Separator from "../layout/seperator";
 import Fetching from '../layout/message_fetching';
@@ -24,7 +20,7 @@ import { farmState } from "../store";
 import useThemedStyles from "../styles/theme/useThemedStyles";
 import { styles } from "../styles/styles";
 
-export default function FarmsScreen() {
+export default function FarmsScreen({ navigation }) {
     // Styling (theme)
     let style = useThemedStyles(styles);
 
