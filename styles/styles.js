@@ -66,7 +66,6 @@ export const styles = theme =>
             color: theme.colors.TEXT,
         },
         largeCameraButton: {
-        largeCameraButton: {
             width: "100%",
             height: 120,
             display: "flex",
