@@ -9,5 +9,4 @@ export const todoListState = atom({
     key: "todoListState",
     default: [{ id: 1, text: "Study React JS", isCompleted: true },
     { id: 2, text: "Practice Recoil State Management", isCompleted: false }]
-}); 
-  
+});

@@ -13,15 +13,17 @@ export default function TakePhotoScreen({ route, navigation }) {
 
     // Image (link to local image)
     const { image } = route.params;
+    const { locationX } = route.params;
+    const { locationY } = route.params;
 
     // Size of icon
-    const size = 40;
+    const size = 25;
 
     return (
         <View style={style.body}>
             <Image source={{ uri: image }} style={style.img}/>
             <TouchableOpacity style={style.newPhotoButton} onPress={() => {newPhoto();}}>
-                <Icon name="camera-iris" size={size} color="#2c3e50"/>
+                <Icon name="camera-iris" size={size} style={style.textBG_COLOR}/>
             </TouchableOpacity>
             <TouchableOpacity style={style.usePhotoButton} onPress={() => {usePhoto();}}>
                 <Text style={[style.textBG_COLOR, {fontSize: 30}]}>Use photo</Text>
@@ -34,8 +36,9 @@ export default function TakePhotoScreen({ route, navigation }) {
     }
 
     function usePhoto() {
+        let locationString = "x: " + locationX + "\n" + "y: " + locationY;
         // Do things with this image
-        alert(image)
+        alert(locationString)
     }
     
 }

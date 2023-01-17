@@ -6,6 +6,9 @@ import { styles } from "../styles/styles";
 
 import { useEffect, useState } from "react";
 
+// Geolocation
+import * as Location from 'expo-location';
+
 // Import Camera
 import { Camera, CameraType, FlashMode } from 'expo-camera';
 
@@ -18,6 +21,12 @@ import { Icon } from "@react-native-material/core";
 export default function TakePhotoScreen({ navigation }) {
     // Styling (theme)
     const style = useThemedStyles(styles);
+
+    // Geolocation
+    const [status, requestPermission] = Location.useForegroundPermissions();
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+
     // Camera
     const [permission, setPermission] = Camera.useCameraPermissions();
     const [camera, setCamera] = useState(null);
@@ -26,16 +35,22 @@ export default function TakePhotoScreen({ navigation }) {
 
     useEffect(() => {
         (async () => {
+            requestPermission();
+            
             const cameraStatus = await Camera.requestCameraPermissionsAsync();
             setPermission(cameraStatus.status === 'granted');
+
+            const locationData = await Location.getCurrentPositionAsync({});
+            setLocation(locationData);
         })();
     }, []);
+    
     
     const takePicture = async () => {
         if(camera){
             const data = await camera.takePictureAsync(null);
             setImage(data.uri);
-            navigation.navigate('Taken picture', {image: data.uri})
+            navigation.navigate('Taken picture', {image: data.uri, locationX: location.coords.longitude, locationY: location.coords.latitude})
         }
     };
 
@@ -65,8 +80,8 @@ export default function TakePhotoScreen({ navigation }) {
                             </TouchableOpacity>
                         </View>
                       </Camera>
-                    : <Text>You do not have the correct permissions to use the camera.</Text>
-                : <Text>You do not have given any permissions</Text>
+                    : <Text style={style.text}>You do not have the correct permissions to use the camera.</Text>
+                : <Text style={style.text}>You do not have given any permissions</Text>
             }
         </View>
     )
