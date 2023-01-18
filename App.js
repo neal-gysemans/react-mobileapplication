@@ -7,27 +7,40 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {RecoilRoot} from 'recoil';
-import { Ionicons } from '@expo/vector-icons';
 
 // Import for screens
-import HomeScreen from './components/home'
-import WorkersScreen from './components/workers'
-import FarmsScreen from './components/farms'
-import AccountScreen from './components/account'
-import PhotoScreen from './components/photoScreen'
+import HomeScreen from './components/home';
+import WorkersScreen from './components/workers';
+import FarmsScreen from './components/farms';
+import AccountScreen from './components/account';
+import PhotoScreen from './components/photoScreen';
+
+// Authentication screens
+import SignInScreen from './components/authentication/signin_screen';
+import SignUpScreen from './components/authentication/signup_screen';
+
 
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
 
+// data
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import configData from './config/hasura.json';
 
+// firebase
+import './config/firebase';
+import { useAuthentication } from './hooks/use_authentication';
+
+// Stack screens
 import WorkerDetails from './components/workers/worker_details';
 import FarmDetails from './components/farms/farm_details';
 import FieldDetails from './components/fields/field_details';
 
-const Tab = createBottomTabNavigator();
+// there is a warning that does not matter
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core']);
 
+const Tab = createBottomTabNavigator();
 
 const client = new ApolloClient({
   uri: configData.qlendpoint,
@@ -70,13 +83,18 @@ function FarmStackScreen() {
   );
 }
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
+  const {user} = useAuthentication();
+  console.log(user);
   return (
     <ThemeProvider>
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>
       <RecoilRoot>
       <ApolloProvider client={client}>
       <NavigationContainer>
+        {user ? 
           <Tab.Navigator screenOptions={({route}) => ({
             tabBarIcon:({focused, color, size}) => {
               let iconName;
@@ -110,7 +128,14 @@ export default function App() {
             <Tab.Screen name="Farms" component={FarmStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Account" component={AccountScreen}/>
             <Tab.Screen name="Camera" component={PhotoScreen}/>
+            
           </Tab.Navigator>
+          :
+          <Stack.Navigator initialRouteName="Sign In">
+          <Stack.Screen name="Sign In" component={SignInScreen} />
+          <Stack.Screen name="Sign Up" component={SignUpScreen} />
+        </Stack.Navigator>
+        }
         </NavigationContainer>
       </ApolloProvider>
       </RecoilRoot>

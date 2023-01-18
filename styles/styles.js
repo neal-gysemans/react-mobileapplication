@@ -89,6 +89,18 @@ export const styles = theme =>
             justifyContent: "center",
             alignItems: "center"
         },
+        authenticationButton: {
+            padding: 15,
+            backgroundColor: theme.colors.TEXT,
+            width: 300,
+        },
+        buttonText: {
+            color: theme.colors.BACKGROUND,
+            textAlign: 'center',
+        },
+        control: {
+            width: 300,
+        },
         img: {
             width: "100%",
             height: "100%",
