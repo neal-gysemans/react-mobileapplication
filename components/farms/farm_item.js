@@ -9,11 +9,11 @@ import { styles } from "../../styles/styles";
 export default function FarmItem({ item, onPress }) {
   const style = useThemedStyles(styles);
 
-  console.log('farm: ', item);
+  //console.log('farm: ', item);
   return (
     <Pressable style={[style.list]} onPress={() => onPress(item)}>
-      <Text style={[style.circle, style.name]}>
-        <Icon name='home'/></Text>
+      <Text style={style.circle}>
+      {item.name.charAt(0).toUpperCase()}</Text>
       <Text style={style.listItem}>
         {item.name}</Text>
     </Pressable>
