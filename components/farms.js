@@ -32,7 +32,7 @@ export default function FarmsScreen({ navigation }) {
     if (error) return <Error error={error} />
       
     if (data) {
-      console.log('farm: ', data.farm)
+      //console.log('farm: ', data.farm)
     }
     function handleDetails(item){
       navigation.navigate('FarmDetails', { id: item.id });
