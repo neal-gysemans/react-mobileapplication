@@ -170,5 +170,54 @@ export const styles = theme =>
         },
         tableHeaderTitle: {
             textColor: theme.colors.BACKGROUND,
+        },
+        flatListItem: {
+            flex: 1,
+            paddingVertical: 15,
+            backgroundColor: theme.colors.BACKGROUND,
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            justifyContent: "space-between"
+        },
+        flatListTitle: {
+            position: "relative"
+        },
+        flatListTitleNumber: {
+            position: "absolute",
+            top: 0,
+            left: "100%",
+            color: theme.colors.BACKGROUND,
+            backgroundColor: theme.colors.TEXT,
+            width: 15,
+            height: 15,
+            textAlignVertical: "center",
+            textAlign: "center",
+            fontSize: 8,
+            borderRadius: 50,
+        },
+        flatListTitleText: {
+            paddingRight: 5,
+            fontSize: 20,
+        },
+        flatListInfo: {
+            fontSize: 13,
+            textAlign: "right",
+        },
+        farmListInFieldOwnerDetails: {
+            marginTop: 15,
+            padding: 15,
+            borderWidth: 1,
+            borderType: "solid",
+            borderColor: theme.colors.TEXT,
+            position: "relative"
+        },
+        listLabel: {
+            position: "absolute",
+            left: 5,
+            top: -15,
+            height: 30,
+            padding: 5,
+            backgroundColor: theme.colors.BACKGROUND,
         }
     });

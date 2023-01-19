@@ -13,6 +13,7 @@ import {RecoilRoot} from 'recoil';
 import HomeScreen from './components/home';
 import WorkersScreen from './components/workers';
 import FarmsScreen from './components/farms';
+import AdminFieldOwnerScreen from './components/admin/fieldowners'
 import AccountScreen from './components/account';
 import PhotoScreen from './components/camera/photoScreen';
 
@@ -36,6 +37,7 @@ import { useAuthentication } from './hooks/use_authentication';
 import WorkerDetails from './components/workers/worker_details';
 import FarmDetails from './components/farms/farm_details';
 import FieldDetails from './components/fields/field_details';
+import AdminFieldOwnerDetails from './components/admin/fieldowner/fieldOwner_details'
 
 // there is a warning that does not matter
 import { LogBox } from 'react-native';
@@ -56,12 +58,8 @@ const WorkersStack = createNativeStackNavigator();
 function WorkerStackScreen() {
   return(
     <WorkersStack.Navigator>
-      <WorkersStack.Screen name="WorkersList" 
-      component={WorkersScreen} 
-      options={{ title: 'Employees' }}/>
-      <WorkersStack.Screen name="WorkerDetails" 
-      component={WorkerDetails} 
-      options={{ title: 'Details' }}/>
+      <WorkersStack.Screen name="WorkersList" component={WorkersScreen} options={{ title: 'Employees' }}/>
+      <WorkersStack.Screen name="WorkerDetails" component={WorkerDetails} options={{ title: 'Details' }}/>
     </WorkersStack.Navigator>
   );
 }
@@ -71,17 +69,22 @@ const FarmStack = createNativeStackNavigator();
 function FarmStackScreen() {
   return(
     <FarmStack.Navigator>
-      <FarmStack.Screen name="FarmsList" 
-      component={FarmsScreen} 
-      options={{ title: 'Farms' }}/>
-      <FarmStack.Screen name="FarmDetails" 
-      component={FarmDetails} 
-      options={{ title: 'Details' }}/>
-      <FarmStack.Screen name="FieldDetails" 
-      component={FieldDetails} 
-      options={{ title: 'Field details' }}/>
+      <FarmStack.Screen name="FarmsList" component={FarmsScreen} options={{ title: 'Farms' }}/>
+      <FarmStack.Screen name="FarmDetails" component={FarmDetails} options={{ title: 'Details' }}/>
+      <FarmStack.Screen name="FieldDetails" component={FieldDetails} options={{ title: 'Field details' }}/>
     </FarmStack.Navigator>
   );
+}
+
+const AdminFieldOwnerStack = createNativeStackNavigator();
+
+function AdminFieldOwnerStackScreen(){
+  return(
+    <AdminFieldOwnerStack.Navigator>
+      <AdminFieldOwnerStack.Screen name="FieldOwnerList" component={AdminFieldOwnerScreen} options={{title: "Admin: Field owners"}}/>
+      <AdminFieldOwnerStack.Screen name="FieldOwnerDetails" component={AdminFieldOwnerDetails} options={{title: "Admin: Field owner detail"}}/>
+    </AdminFieldOwnerStack.Navigator>
+  )
 }
 
 const Stack = createNativeStackNavigator();
@@ -105,18 +108,21 @@ export default function App() {
                 case "Home":
                   iconName = 'home';
                   break;
+                case "Admin: Field owner":
+                  iconName = 'account-key';
+                  break;
                 case "Workers":
                   iconName = 'hammer';
                   break;
                 case "Farms":
                   iconName = 'tractor';
                   break;
-                  case "Account":
-                    iconName = 'account';
-                    break;
-                  case "Camera":
-                    iconName = 'camera';
-                    break;
+                case "Account":
+                  iconName = 'account';
+                  break;
+                case "Camera":
+                  iconName = 'camera';
+                  break;
               }
               return <Icon name={iconName} size={size} color={color}/>
             },
@@ -132,6 +138,7 @@ export default function App() {
             <Tab.Screen name="Home" component={HomeScreen}/>
             <Tab.Screen name="Workers" component={WorkerStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Farms" component={FarmStackScreen} options={{headerShown: false}}/>
+            <Tab.Screen name="Admin: Field owner" component={AdminFieldOwnerStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Camera" component={PhotoScreen}/>
             <Tab.Screen name="Account" component={AccountScreen}/>
             
