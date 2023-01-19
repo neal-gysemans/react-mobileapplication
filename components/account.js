@@ -19,15 +19,17 @@ export default function AccountScreen() {
     const theme = useTheme();
 
     const {user} = useAuthentication();
-    // console.log('user: ', user)
 
     return (
         <View style={style.body}>
+            {/* Button to change theme */}
+            <Pressable style={style.themeButton} onPress={theme.toggleTheme}>
+                <Text style={style.themeButtonText}>Change theme</Text>
+            </Pressable>
+
             <Text style={style.text}>{user?.email}</Text>
             <Text style={style.text}>{user?.uid}</Text>
             
-            {/* Button to change theme */}
-            <Button title="Change theme" onPress={theme.toggleTheme}/>
 
             <Pressable style={style.largeButton} onPress={() => signOut(auth)}>
                 <Text style={style.textLargeButton}>Sign Out</Text>

@@ -100,6 +100,7 @@ export const styles = theme =>
         textLargeButton: {
             fontSize: 15,
             textAlign: "center",
+            color: theme.colors.BACKGROUND,
         },
         control: {
             padding: 0,
@@ -223,5 +224,15 @@ export const styles = theme =>
         },
         language: {
             opacity: 0.6
+        },
+        themeButton: {
+            backgroundColor: theme.colors.TEXT,
+            width: 150,
+            padding: 10,
+            marginVertical: 10
+        },
+        themeButtonText: {
+            textAlign: "center",
+            color: theme.colors.BACKGROUND,
         },
     });
