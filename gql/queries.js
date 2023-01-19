@@ -20,6 +20,20 @@ query GET_WORKERS_FROM_FARM($farmId: Int!) {
   }
 }`;
 
+export const GET_FIELDOWNERS = gql`
+query GET_FIELDOWNERS {
+    fieldowner(order_by: {name: asc}) {
+      id
+      name
+      country
+      city
+      language
+      farms{
+        id
+      }
+    }
+  }`;
+
 export const GET_FIELDOWNER_FARMS = gql`
 query GET_FIELDOWNER_FARMS($farmId: Int!) {
   farm(where: {id: {_eq: $farmId}}) {
@@ -39,6 +53,21 @@ query GET_WORKER_DETAILS($id: Int!) {
     city
     country
     email
+  }
+}`;
+
+export const GET_FIELDOWNER_DETAILS = gql`
+query GET_FIELDOWNER_DETAILS($id: Int!) {
+  fieldowner(where: {id: {_eq: $id}}) {
+    id
+    name
+    country
+    city
+    language
+    farms {
+      id
+      name
+    }
   }
 }`;
 

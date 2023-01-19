@@ -33,16 +33,10 @@ export default function WorkersScreen({ navigation }) {
   if (data.farmStaff) {
     // console.log('worker: ', data.farmStaff[0].worker.id)
   }
-
   function handleDetails(item){
     navigation.navigate('WorkerDetails', { id: item.id });
   }
-  /*<FAB
-        icon={{ name: 'add', color: 'white' }}
-        size="large"
-        placement="right"
-        color="tomato"
-      />*/
+  
     return (
       <View style={style.body}>
       <FlatList
