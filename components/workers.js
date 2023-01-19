@@ -27,7 +27,7 @@ export default function WorkersScreen({ navigation }) {
   const farmId = useRecoilValue(farmState);
   const {data, loading, error} = useQuery(GET_WORKERS_FROM_FARM, { variables: {farmId}, skip: farmId === 0});
 
-  if (loading) return <Fetching />
+  if (loading) return <Fetching message="Fetching data..." />
   if (error) return <Error error={error} />
     
   if (data.farmStaff) {

@@ -28,7 +28,7 @@ export default function FarmsScreen({ navigation }) {
     const {data, loading, error} = useQuery(GET_FIELDOWNER_FARMS, { variables: {farmId}, skip: farmId === 0});
 
 
-    if (loading) return <Fetching />
+    if (loading) return <Fetching message="Fetching data..." />
     if (error) return <Error error={error} />
       
     if (data) {

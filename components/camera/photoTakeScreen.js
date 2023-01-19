@@ -18,6 +18,9 @@ import { useIsFocused } from "@react-navigation/core";
 // Icons
 import { Icon } from "@react-native-material/core";
 
+// Fetch screen
+import Fetching from '../../layout/message_fetching'
+
 export default function TakePhotoScreen({ navigation }) {
     // Styling (theme)
     const style = useThemedStyles(styles);
@@ -45,11 +48,11 @@ export default function TakePhotoScreen({ navigation }) {
         })();
     }, []);
     
-    
     const takePicture = async () => {
         if(camera){
             const data = await camera.takePictureAsync(null);
             setImage(data.uri);
+            console.log(location);
             navigation.navigate('Taken picture', {image: data.uri, locationX: location.coords.longitude, locationY: location.coords.latitude})
         }
     };
@@ -63,6 +66,8 @@ export default function TakePhotoScreen({ navigation }) {
 
     // Focused?
     const isFocused = useIsFocused();
+
+    if(!location) return <Fetching message="Camera is getting ready..."/>
 
     return (
         <View style={style.body}>
@@ -79,7 +84,7 @@ export default function TakePhotoScreen({ navigation }) {
                                 <Icon name="camera" size={size} style={style.cameraButtonText}/>
                             </TouchableOpacity>
                         </View>
-                      </Camera>
+                    </Camera>
                     : <Text style={style.text}>You do not have the correct permissions to use the camera.</Text>
                 : <Text style={style.text}>You do not have given any permissions</Text>
             }

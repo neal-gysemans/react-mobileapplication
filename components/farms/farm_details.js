@@ -21,7 +21,7 @@ export default function FarmDetailsScreen({ route, navigation }) {
     const { data, loading, error } = useQuery(GET_FARM_DETAILS, { variables: {id}});
     const style = useThemedStyles(styles);
     
-    if (loading) return <Fetching />
+    if (loading) return <Fetching message="Fetching data..." />
     if (error) return <Error error={error} />
     
 

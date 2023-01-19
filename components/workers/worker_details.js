@@ -52,7 +52,7 @@ export default function WorkerDetailsScreen({ route, navigation }) {
       navigation.goBack();
     }*/
   
-    if (loading) return <Fetching />
+    if (loading) return <Fetching message="Fetching data..." />
     if (error) return <Error error={error} />
     
 
