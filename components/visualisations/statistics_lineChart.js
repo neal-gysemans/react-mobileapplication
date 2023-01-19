@@ -5,18 +5,18 @@ import useThemedStyles from "../../styles/theme/useThemedStyles";
 import { text } from "../../styles/styles";
 import { background } from "../../styles/styles";
 
-import { LineChart, BarChart, PieChart, ProgressChart, ContributionGraph, StackedBarChart } from "react-native-chart-kit";
+import { LineChart } from "react-native-chart-kit";
 
-export default function Stat_flowersOverPeriod(props){
+export default function Stat_LineChart(props){
   // Styling (theme)
   const textColor = useThemedStyles(text);
   const backgroundColor = useThemedStyles(background);
   return (
-    <>
-      <Text style={{color: textColor}}>Amount of flowers over the years</Text>
+    <View style={{marginBottom: 10}}>
+    <Text style={{color: textColor}}>{props.title}</Text>
       <LineChart
         data={props.data}
-        width={Dimensions.get("window").width - 30} // Width of screen - width of body - width of padding
+        width={Dimensions.get("window").width - props.padding} // Width of screen - width of body - width of padding
         height={220}
         yAxisLabel=""
         yAxisSuffix="k"
@@ -37,6 +37,6 @@ export default function Stat_flowersOverPeriod(props){
           backgroundColor: backgroundColor,
         }}
       />
-    </>
+    </View>
     )
 };

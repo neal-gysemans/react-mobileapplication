@@ -88,6 +88,9 @@ export const styles = theme =>
             justifyContent: "center",
             alignItems: "center"
         },
+        mb10: {
+            marginBottom: 10,
+        },
         largeButton: {
             padding: 15,
             textColor: theme.colors.BACKGROUND,
@@ -156,9 +159,6 @@ export const styles = theme =>
             backgroundColor: 'tomato',
             textAlign: 'center',
             textAlignVertical: 'center',
-        },
-        component: {
-            marginBottom: 10,
         },
         table:{
             borderWidth: 1,

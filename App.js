@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import {RecoilRoot, useRecoilState} from 'recoil';
+import {RecoilRoot} from 'recoil';
 
 // Import for screens
 import HomeScreen from './components/home';
@@ -125,12 +125,15 @@ export default function App() {
             tabBarStyle: {
               backgroundColor: '#2c3e50',
             },
+            tabBarIconStyle: {
+              height: 40
+            },
           })}>
             <Tab.Screen name="Home" component={HomeScreen}/>
             <Tab.Screen name="Workers" component={WorkerStackScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Farms" component={FarmStackScreen} options={{headerShown: false}}/>
-            <Tab.Screen name="Account" component={AccountScreen}/>
             <Tab.Screen name="Camera" component={PhotoScreen}/>
+            <Tab.Screen name="Account" component={AccountScreen}/>
             
           </Tab.Navigator>
         </NavigationContainer>
@@ -186,8 +189,6 @@ export default function App() {
     </ThemeProvider>
     )
   }
-
-  console.log(user);
   return (
     <ThemeProvider>
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>
