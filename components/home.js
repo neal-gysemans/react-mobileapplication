@@ -11,7 +11,7 @@ import { Icon } from "@react-native-material/core";
 import Stat_lineChart from './visualisations/statistics_lineChart'
 import Stat_BarChart from './visualisations/statistics_barChart'
 import Stat_heatmap from "./visualisations/statistics_heatmap";
-import Stat_interesting from "./visualisations/stat_test";
+import Stat_interesting from "./visualisations/statistics_interesting";
 
 export default function HomeScreen({ navigation }) {
     // Styling (theme)
