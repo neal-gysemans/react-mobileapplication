@@ -14,7 +14,7 @@ import HomeScreen from './components/home';
 import WorkersScreen from './components/workers';
 import FarmsScreen from './components/farms';
 import AccountScreen from './components/account';
-import PhotoScreen from './components/photoScreen';
+import PhotoScreen from './components/camera/photoScreen';
 
 // Authentication screens
 import SignInScreen from './components/authentication/signin_screen';

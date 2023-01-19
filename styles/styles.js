@@ -16,9 +16,6 @@ export const styles = theme =>
         textBG_COLOR: {
             color: theme.colors.BACKGROUND,
         },
-        textBG_COLOR: {
-            color: theme.colors.BACKGROUND,
-        },
         camera: {
             width: "100%",
             height: "100%",
@@ -91,17 +88,20 @@ export const styles = theme =>
             justifyContent: "center",
             alignItems: "center"
         },
-        authenticationButton: {
+        largeButton: {
             padding: 15,
+            textColor: theme.colors.BACKGROUND,
             backgroundColor: theme.colors.TEXT,
-            width: 300,
+            width: "100%",
         },
-        buttonText: {
-            color: theme.colors.BACKGROUND,
-            textAlign: 'center',
+        textLargeButton: {
+            fontSize: 15,
+            textAlign: "center",
         },
         control: {
-            width: 300,
+            padding: 0,
+            color: theme.colors.TEXT,
+            width: "100%",
         },
         img: {
             width: "100%",

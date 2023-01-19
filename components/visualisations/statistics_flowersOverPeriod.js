@@ -13,6 +13,7 @@ export default function Stat_flowersOverPeriod(props){
   const backgroundColor = useThemedStyles(background);
   return (
     <>
+      <Text style={{color: textColor}}>Amount of flowers over the years</Text>
       <LineChart
         data={props.data}
         width={Dimensions.get("window").width - 30} // Width of screen - width of body - width of padding

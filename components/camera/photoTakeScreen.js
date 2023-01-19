@@ -1,8 +1,8 @@
 import { Text, View, TouchableOpacity } from "react-native";
 
 // Theme
-import useThemedStyles from "../styles/theme/useThemedStyles";
-import { styles } from "../styles/styles";
+import useThemedStyles from "../../styles/theme/useThemedStyles";
+import { styles } from "../../styles/styles";
 
 import { useEffect, useState } from "react";
 

@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 // Import screen
-import TakePicture from './photoTakeScreen';
-import TakenPicture from './photoTakenScreen';
+import TakePicture from '../camera/photoTakeScreen';
+import TakenPicture from '../camera/photoTakenScreen';
 
 export default function PhotoScreen(){
     return(

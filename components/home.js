@@ -6,8 +6,11 @@ import { styles } from "../styles/styles";
 
 // Icons
 import { Icon } from "@react-native-material/core";
+
+// Statistics
 import Stat_flowerOverPeriod from "./visualisations/statistics_flowersOverPeriod";
 import Stat_heatmap from "./visualisations/statistics_heatmap";
+import Stat_interesting from "./visualisations/stat_test";
 
 export default function HomeScreen({ navigation }) {
     // Styling (theme)
@@ -29,6 +32,10 @@ export default function HomeScreen({ navigation }) {
                 <Icon name="camera-iris" size={size} style={style.largeCameraButtonText}/>
             </TouchableOpacity>
             <Stat_flowerOverPeriod data={data}/>
+            <Stat_interesting 
+                label="estimated number of strawberries on field 1"
+                data={17259}    
+            />
             <Stat_heatmap/>
         </View>
     );
