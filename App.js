@@ -6,7 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Icons
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import {RecoilRoot} from 'recoil';
+
+import {RecoilRoot, useRecoilState} from 'recoil';
 
 // Import for screens
 import HomeScreen from './components/home';
@@ -87,14 +88,16 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const {user} = useAuthentication();
-  console.log(user);
-  return (
-    <ThemeProvider>
+
+
+  if (user?.uid == "6TQuN609EAdG5toyuHxW40TaDU62"){
+    console.log('its the fieldowner');
+    return (
+      <ThemeProvider>
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>
       <RecoilRoot>
       <ApolloProvider client={client}>
       <NavigationContainer>
-        {user ? 
           <Tab.Navigator screenOptions={({route}) => ({
             tabBarIcon:({focused, color, size}) => {
               let iconName;
@@ -130,12 +133,71 @@ export default function App() {
             <Tab.Screen name="Camera" component={PhotoScreen}/>
             
           </Tab.Navigator>
-          :
+        </NavigationContainer>
+      </ApolloProvider>
+      </RecoilRoot>
+    </IconComponentProvider>
+    </ThemeProvider>
+    )
+  }
+  if (user?.uid == "uNek9kZlU9W8MAH5qDtze3CBc8j1"){
+    console.log('its the worker');
+    return (
+      <ThemeProvider>
+    <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+      <RecoilRoot>
+      <ApolloProvider client={client}>
+      <NavigationContainer>
+          <Tab.Navigator screenOptions={({route}) => ({
+            tabBarIcon:({focused, color, size}) => {
+              let iconName;
+              switch (route.name){
+                case "Home":
+                  iconName = 'home';
+                  break;
+                case "Farms":
+                  iconName = 'tractor';
+                  break;
+                  case "Account":
+                    iconName = 'account';
+                    break;
+                  case "Camera":
+                    iconName = 'camera';
+                    break;
+              }
+              return <Icon name={iconName} size={size} color={color}/>
+            },
+            tabBarActiveTintColor: '#ff7a00',
+            tabBarInactiveTintColor: '#ecf0f1',
+            tabBarStyle: {
+              backgroundColor: '#2c3e50',
+            },
+          })}>
+            <Tab.Screen name="Home" component={HomeScreen}/>
+            <Tab.Screen name="Farms" component={FarmStackScreen} options={{headerShown: false}}/>
+            <Tab.Screen name="Account" component={AccountScreen}/>
+            <Tab.Screen name="Camera" component={PhotoScreen}/>
+            
+          </Tab.Navigator>
+        </NavigationContainer>
+      </ApolloProvider>
+      </RecoilRoot>
+    </IconComponentProvider>
+    </ThemeProvider>
+    )
+  }
+
+  console.log(user);
+  return (
+    <ThemeProvider>
+    <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+      <RecoilRoot>
+      <ApolloProvider client={client}>
+      <NavigationContainer>
           <Stack.Navigator initialRouteName="Sign In">
           <Stack.Screen name="Sign In" component={SignInScreen} />
           <Stack.Screen name="Sign Up" component={SignUpScreen} />
         </Stack.Navigator>
-        }
         </NavigationContainer>
       </ApolloProvider>
       </RecoilRoot>
