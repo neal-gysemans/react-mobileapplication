@@ -25,7 +25,7 @@ export default function FarmDetailsScreen({ route, navigation }) {
     if (error) return <Error error={error} />
     
 
-    //console.log('fields: ', data.farm[0]);
+    // console.log('fields: ', data.farm[0]);
 
     function handleDetails(item){
       navigation.navigate('FieldDetails', { id: item.id });

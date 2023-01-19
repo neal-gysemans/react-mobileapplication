@@ -56,8 +56,8 @@ export default function WorkerDetailsScreen({ route, navigation }) {
     if (error) return <Error error={error} />
     
 
-    console.log(data.worker[0].name);
-    console.log(id);
+    // console.log(data.worker[0].name);
+    // console.log(id);
     /*function handleChangeFirstname(value) {
       setStudent({ ...student, firstname: value });
     }

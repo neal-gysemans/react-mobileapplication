@@ -91,7 +91,7 @@ export default function App() {
 
 
   if (user?.uid == "6TQuN609EAdG5toyuHxW40TaDU62"){
-    console.log('its the fieldowner');
+    // console.log('its the fieldowner');
     return (
       <ThemeProvider>
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>
@@ -144,7 +144,7 @@ export default function App() {
     )
   }
   if (user?.uid == "uNek9kZlU9W8MAH5qDtze3CBc8j1"){
-    console.log('its the worker');
+    // console.log('its the worker');
     return (
       <ThemeProvider>
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>

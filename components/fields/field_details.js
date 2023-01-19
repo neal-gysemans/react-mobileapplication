@@ -55,7 +55,7 @@ export default function FieldDetailsScreen({ route, navigation }) {
     if (error) return <Error error={error} />
     
 
-    console.log(data.field);
+    // console.log(data.field);
     /*function handleChangeFirstname(value) {
       setStudent({ ...student, firstname: value });
     }
