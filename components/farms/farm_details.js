@@ -20,57 +20,16 @@ export default function FarmDetailsScreen({ route, navigation }) {
     const { id } = route.params;
     const { data, loading, error } = useQuery(GET_FARM_DETAILS, { variables: {id}});
     const style = useThemedStyles(styles);
-    // insert
-    /*const [ insertStudent ] = useMutation(INSERT_STUDENT, {
-      refetchQueries: [
-        {query: GET_STUDENTS }
-      ],
-    });*/
-  
-    // delete
-    /*const [ deleteStudent ] = useMutation(DELETE_STUDENT, {
-      refetchQueries: [
-        {query: GET_STUDENTS }
-      ],
-    });*/
-  
-  
-    /*function handleInsert() {
-      insertStudent({ variables: { firstname: student.firstname, 
-      lastname: student.lastname } });
-      navigation.goBack();
-    }
-  
-    function handleUpdate() {
-      updateStudent({ variables: { id: student.id,
-      firstname: student.firstname, 
-      lastname: student.lastname } });
-      navigation.goBack();
-    }
-  
-    function handleDelete() {
-      deleteStudent({ variables : 
-      { id: student.id } });
-      navigation.goBack();
-    }*/
-  
+    
     if (loading) return <Fetching />
     if (error) return <Error error={error} />
     
 
-    console.log('fields: ', data.farm[0]);
-    /*function handleChangeFirstname(value) {
-      setStudent({ ...student, firstname: value });
-    }
-  
-    function handleChangeLastname(value) {
-      setStudent({ ...student, lastname: value });
-    }*/
-
+    //console.log('fields: ', data.farm[0]);
 
     function handleDetails(item){
-        navigation.navigate('FieldDetails', { id: item.id });
-      }
+      navigation.navigate('FieldDetails', { id: item.id });
+    }
 
   return (
     <View style={style.body}>

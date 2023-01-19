@@ -13,8 +13,8 @@ export default function FieldItem({ item, onPress }) {
     //console.log('field: ', item);
   return (
     <Pressable style={[style.list]} onPress={() => onPress(item)}>
-      <Text style={style.circle}>
-        <Icon name='aspect-ratio'/></Text>
+        <Text style={style.circle}>
+        <Icon name='aspect-ratio' /></Text>
       <Text style={style.listItem}>
         {item.name}</Text>
     </Pressable>

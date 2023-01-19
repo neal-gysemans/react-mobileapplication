@@ -1,6 +1,6 @@
 import { FlatList, View } from "react-native"
 
-// Apollo (to be replaced by api)
+// Apollo
 import { useQuery } from "@apollo/client";
 import { GET_WORKERS_FROM_FARM } from "../gql/queries";
 

@@ -10,15 +10,6 @@ export const styles = theme =>
             backgroundColor: theme.colors.BACKGROUND,
             width: '100%',
         },
-        list: {
-            flex: 1,
-            paddingTop: 15,
-            paddingBottom: 15,
-            backgroundColor: theme.colors.BACKGROUND,
-            width: '100%',
-            flexDirection: 'row',
-            alignContent: 'center',
-        },
         text: {
             color: theme.colors.TEXT,
         },
@@ -100,6 +91,18 @@ export const styles = theme =>
             justifyContent: "center",
             alignItems: "center"
         },
+        authenticationButton: {
+            padding: 15,
+            backgroundColor: theme.colors.TEXT,
+            width: 300,
+        },
+        buttonText: {
+            color: theme.colors.BACKGROUND,
+            textAlign: 'center',
+        },
+        control: {
+            width: 300,
+        },
         img: {
             width: "100%",
             height: "100%",
@@ -126,25 +129,33 @@ export const styles = theme =>
         icon: {
             color: theme.colors.TEXT,
         },
+        list: {
+            flex: 1,
+            paddingTop: 15,
+            paddingBottom: 15,
+            backgroundColor: theme.colors.BACKGROUND,
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
         listItem:{
             fontSize: 20,
             color: theme.colors.TEXT,
-            display: "flex",
-            alignItems: "center",
+            marginTop: 15,
+            marginBottom: 15,
             height: 50,
+            paddingLeft: 20,
+            paddingTop:15,
         },
         circle: {
             width: 50,
             height: 50,
             fontSize: 20,
             borderRadius: 50,
-            color: 'white',
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: 10,
+            fontSize: 30,
             backgroundColor: 'tomato',
-            marginRight: 20,
+            textAlign: 'center',
+            textAlignVertical: 'center',
         },
         component: {
             marginBottom: 10,
