@@ -27,7 +27,7 @@ export default function SignInScreen({ navigation }) {
     }
 
     try {
-      console.log(auth);
+      // console.log(auth);
       await signInWithEmailAndPassword(auth, value.email, value.password);
     } catch (error) {
       setValue({ ...value, error: error.message, })

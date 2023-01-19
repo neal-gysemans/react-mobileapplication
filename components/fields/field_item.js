@@ -10,7 +10,7 @@ import { styles } from "../../styles/styles";
 export default function FieldItem({ item, onPress }) {
     const style = useThemedStyles(styles);
 
-    //console.log('field: ', item);
+    // console.log('field: ', item);
   return (
     <Pressable style={[style.list]} onPress={() => onPress(item)}>
         <Text style={style.circle}>

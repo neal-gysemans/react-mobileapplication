@@ -52,7 +52,7 @@ export default function TakePhotoScreen({ navigation }) {
         if(camera){
             const data = await camera.takePictureAsync(null);
             setImage(data.uri);
-            console.log(location);
+            // console.log(location);
             navigation.navigate('Taken picture', {image: data.uri, locationX: location.coords.longitude, locationY: location.coords.latitude})
         }
     };

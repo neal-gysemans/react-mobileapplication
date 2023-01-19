@@ -31,7 +31,7 @@ export default function WorkersScreen({ navigation }) {
   if (error) return <Error error={error} />
     
   if (data.farmStaff) {
-    //console.log('worker: ', data.farmStaff[0].worker.id)
+    // console.log('worker: ', data.farmStaff[0].worker.id)
   }
 
   function handleDetails(item){
