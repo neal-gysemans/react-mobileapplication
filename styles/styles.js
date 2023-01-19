@@ -1,6 +1,7 @@
-import { removeDirectivesFromDocument } from "@apollo/client/utilities";
 import { StyleSheet } from "react-native";
 
+export const text = theme => theme.colors.TEXT;
+export const background = theme => theme.colors.BACKGROUND;
 export const styles = theme =>
     StyleSheet.create({
         body: {
@@ -144,5 +145,19 @@ export const styles = theme =>
             fontSize: 10,
             backgroundColor: 'tomato',
             marginRight: 20,
-          },
+        },
+        component: {
+            marginBottom: 10,
+        },
+        table:{
+            borderWidth: 1,
+            borderStyle: "solid",
+            borderColor: theme.colors.TEXT, 
+        },
+        tableHeader: {
+            backgroundColor: theme.colors.TEXT,
+        },
+        tableHeaderTitle: {
+            textColor: theme.colors.BACKGROUND,
+        }
     });

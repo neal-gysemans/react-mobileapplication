@@ -6,7 +6,7 @@ import { colors } from './colors';
 export const ThemeContext = React.createContext();
 
 const ThemeProvider = ({children}) => {
-  const [isLightTheme, setLightTheme] = useState(true);
+  const [isLightTheme, setLightTheme] = useState(false);
   const toggleTheme = () => {
     setLightTheme(previousState => !previousState);
   }
