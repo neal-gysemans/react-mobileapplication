@@ -1,8 +1,12 @@
 import { FlatList, View } from "react-native"
 
-// apollo, queries
+// Apollo
 import { useQuery } from "@apollo/client";
 import { GET_FIELDOWNERS } from "../../gql/queries";
+
+// Theme
+import useThemedStyles from "../../styles/theme/useThemedStyles";
+import { styles } from "../../styles/styles";
 
 // Layout
 import Separator from "../../layout/seperator";
@@ -16,10 +20,6 @@ import FieldOwnerItem from "./fieldowner/fieldOwner_item";
 import { useRecoilValue } from "recoil";
 import { adminFieldOwnerState } from "../../store";
 
-// Theme
-import useThemedStyles from "../../styles/theme/useThemedStyles";
-import { styles } from "../../styles/styles";
-
 export default function FarmsScreen({ navigation }) {
     // Styling (theme)
     let style = useThemedStyles(styles);
@@ -30,10 +30,7 @@ export default function FarmsScreen({ navigation }) {
 
     if (loading) return <Fetching message="Fetching data..." />
     if (error) return <Error error={error} />
-      
-    if (data) {
-      console.log('fieldOwner: ', data.fieldowner)
-    }
+    
     function handleDetails(item){
       navigation.navigate('FieldOwnerDetails', { id: item.id });
     }

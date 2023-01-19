@@ -1,10 +1,8 @@
 import { Text, Pressable, View } from 'react-native';
-import { Icon } from 'react-native-elements';
 
 //theme
 import useThemedStyles from "../../../styles/theme/useThemedStyles";
 import { styles } from "../../../styles/styles";
-
 
 export default function FarmItem({ item, onPress }) {
   const style = useThemedStyles(styles);
@@ -20,6 +18,5 @@ export default function FarmItem({ item, onPress }) {
         <Text style={[style.text, style.flatListInfo]}>{item.city}</Text>
       </View>
     </Pressable>
-    
   );
 };

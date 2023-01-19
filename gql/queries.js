@@ -16,6 +16,8 @@ query GET_WORKERS_FROM_FARM($farmId: Int!) {
     worker {
       id 
       name
+      country
+      city
     }
   }
 }`;
@@ -48,10 +50,10 @@ query GET_WORKER_DETAILS($id: Int!) {
   worker(where: {id: {_eq: $id}}) {
     id
     name
+    country
+    city
     language
     phonenumber
-    city
-    country
     email
   }
 }`;

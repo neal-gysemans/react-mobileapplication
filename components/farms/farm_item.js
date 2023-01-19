@@ -1,21 +1,20 @@
-import { Text, Pressable } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Text, Pressable, View } from 'react-native';
 
 //theme
 import useThemedStyles from "../../styles/theme/useThemedStyles";
 import { styles } from "../../styles/styles";
 
-
 export default function FarmItem({ item, onPress }) {
   const style = useThemedStyles(styles);
-
-  // console.log('farm: ', item);
+  
   return (
-    <Pressable style={[style.list]} onPress={() => onPress(item)}>
-      <Text style={style.circle}>
-      {item.name.charAt(0).toUpperCase()}</Text>
-      <Text style={style.listItem}>
-        {item.name}</Text>
+    <Pressable style={style.flatListItem} onPress={() => onPress(item)}>
+      <View style={style.flatListTitle}>
+        <Text style={[style.text, style.flatListTitleText]}>{item.name}</Text>
+      </View>
+      <View>
+        <Text style={[style.text, style.flatListInfo]}>{item.startdate}</Text>
+      </View>
     </Pressable>
   );
 };

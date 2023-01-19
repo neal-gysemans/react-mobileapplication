@@ -1,6 +1,4 @@
-import { View, TextInput, StyleSheet, Text, FlatList } from 'react-native';
-import { Button } from '@rneui/themed';
-import { Icon } from "@react-native-material/core";
+import { View, Text } from 'react-native';
 
 //theme
 import useThemedStyles from "../../../styles/theme/useThemedStyles";
@@ -10,8 +8,8 @@ import { styles } from "../../../styles/styles";
 import Fetching from '../../../layout/message_fetching';
 import Error from '../../../layout/message_error';
 
-// apollo queries
-import { useQuery, useMutation } from "@apollo/client";
+// Apollo
+import { useQuery } from "@apollo/client";
 import { GET_FIELDOWNER_DETAILS } from '../../../gql/queries';
 
 export default function FieldOwnerDetails({ route, navigation }) {
@@ -26,9 +24,9 @@ export default function FieldOwnerDetails({ route, navigation }) {
     <View style={style.body}>
       <Text style={[style.text, style.name]}>{data.fieldowner[0].name}</Text>
       <Text style={style.text}>{data.fieldowner[0].country}, {data.fieldowner[0].city}</Text>
-      <View style={style.farmListInFieldOwnerDetails}>
-        {data.fieldowner[0].farms.map((farm) => (
-          <Text style={style.text}>{farm.name}</Text>
+      <View style={style.listWithLabel}>
+        {data.fieldowner[0].farms.map((farm, index) => (
+          <Text style={style.text} key={index}>{farm.name}</Text>
         ))}
         <Text style={[style.text, style.listLabel]}>Farms</Text>
       </View>

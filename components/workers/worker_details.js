@@ -1,6 +1,4 @@
-import { View, TextInput, StyleSheet, Text } from 'react-native';
-import { Button } from '@rneui/themed';
-import { Icon } from "@react-native-material/core";
+import { View, Text } from 'react-native';
 
 //theme
 import useThemedStyles from "../../styles/theme/useThemedStyles";
@@ -10,7 +8,7 @@ import { styles } from "../../styles/styles";
 import Fetching from '../../layout/message_fetching';
 import Error from '../../layout/message_error';
 
-// Apollo and queries
+// Apollo
 import { useQuery } from "@apollo/client";
 import { GET_WORKER_DETAILS } from '../../gql/queries';
 
@@ -22,17 +20,17 @@ export default function WorkerDetailsScreen({ route, navigation }) {
     if (loading) return <Fetching message="Fetching data..." />
     if (error) return <Error error={error} />
     
-
   return (
     <View style={style.body}>
-      <Text style={style.name}>{data.worker[0].name}</Text>
-      <Text style={style.text}><Icon name='home' style={style.icon}/>{data.worker[0].city}</Text>
-      <Text style={style.sectionHeader}>Contact information:</Text>
-      <Text style={style.text}><Icon name='phone' style={style.icon}/> {data.worker[0].phonenumber}</Text>
-      <Text style={style.text}><Icon name='email' style={style.icon}/> {data.worker[0].email}</Text>
-      <Text style={style.sectionHeader}>Extra information:</Text>
-      <Text style={style.text}><Icon name='bullhorn-outline' style={style.icon}/> {data.worker[0].language}</Text>
-      <Text style={style.text}><Icon name='card-account-details-outline' style={style.icon}/> {data.worker[0].country}</Text>
+      {console.log(data.worker[0].city)}
+      <Text style={[style.text, style.name]}>{data.worker[0].name}</Text>
+      <Text style={style.text}>{data.worker[0].country}, {data.worker[0].city}</Text>
+      <Text style={[style.text, style.language]}>({data.worker[0].language})</Text>
+      <View style={style.listWithLabel}>
+        <Text style={style.text}>{data.worker[0].email}</Text>
+        <Text style={style.text}>{data.worker[0].phonenumber}</Text>
+        <Text style={[style.text, style.listLabel]}>Contact information</Text>
+      </View>
     </View>
   );
 };
