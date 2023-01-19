@@ -6,7 +6,7 @@ import { colors } from './colors';
 export const ThemeContext = React.createContext();
 
 const ThemeProvider = ({children}) => {
-  const [isLightTheme, setLightTheme] = useState("0");
+  const [isLightTheme, setLightTheme] = useState("1");
 
   const getTheme = async () => {
     try {
