@@ -1,20 +1,21 @@
-import { Text, Pressable } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 
 //theme
 import useThemedStyles from "../../styles/theme/useThemedStyles";
 import { styles } from "../../styles/styles";
 
-
 export default function WorkerItem({ item, onPress }) {
   const style = useThemedStyles(styles);
-
-    //console.log('worker: ', item);
+  
   return (
-    <Pressable style={style.list} onPress={() => onPress(item.worker)}>
-      <Text style={style.circle}>
-        {item.worker.name.charAt(0).toUpperCase()}</Text>
-      <Text style={style.listItem}>
-        {item.worker.name}</Text>
+    <Pressable style={style.flatListItem} onPress={() => onPress(item)}>
+      <View style={style.flatListTitle}>
+        <Text style={[style.text, style.flatListTitleText]}>{item.worker.name}</Text>
+      </View>
+      <View>
+        <Text style={[style.text, style.flatListInfo]}>{item.worker.country}</Text>
+        <Text style={[style.text, style.flatListInfo]}>{item.worker.city}</Text>
+      </View>
     </Pressable>
   );
 };

@@ -13,7 +13,7 @@ import Separator from "../layout/seperator";
 import Fetching from '../layout/message_fetching';
 import Error from '../layout/message_error';
 
-// Item
+// Item in list
 import WorkerItem from "./workers/worker_item";
 
 // Recoil
@@ -29,14 +29,11 @@ export default function WorkersScreen({ navigation }) {
 
   if (loading) return <Fetching message="Fetching data..." />
   if (error) return <Error error={error} />
-    
-  if (data.farmStaff) {
-    // console.log('worker: ', data.farmStaff[0].worker.id)
-  }
-  function handleDetails(item){
-    navigation.navigate('WorkerDetails', { id: item.id });
-  }
   
+  function handleDetails(item){
+    navigation.navigate('WorkerDetails', { id: item.worker.id });
+  }
+
     return (
       <View style={style.body}>
       <FlatList
@@ -45,7 +42,6 @@ export default function WorkersScreen({ navigation }) {
         keyExtractor={(item, index) => index}
         ItemSeparatorComponent={Separator}
       />
-      
     </View>
     );
 }

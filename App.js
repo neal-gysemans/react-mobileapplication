@@ -36,7 +36,6 @@ import { useAuthentication } from './hooks/use_authentication';
 // Stack screens
 import WorkerDetails from './components/workers/worker_details';
 import FarmDetails from './components/farms/farm_details';
-import FieldDetails from './components/fields/field_details';
 import AdminFieldOwnerDetails from './components/admin/fieldowner/fieldOwner_details'
 
 // there is a warning that does not matter
@@ -58,8 +57,8 @@ const WorkersStack = createNativeStackNavigator();
 function WorkerStackScreen() {
   return(
     <WorkersStack.Navigator>
-      <WorkersStack.Screen name="WorkersList" component={WorkersScreen} options={{ title: 'Employees' }}/>
-      <WorkersStack.Screen name="WorkerDetails" component={WorkerDetails} options={{ title: 'Details' }}/>
+      <WorkersStack.Screen name="WorkersList" component={WorkersScreen} options={{ title: 'Workers' }}/>
+      <WorkersStack.Screen name="WorkerDetails" component={WorkerDetails} options={{ title: 'Workers: Details' }}/>
     </WorkersStack.Navigator>
   );
 }
@@ -70,8 +69,7 @@ function FarmStackScreen() {
   return(
     <FarmStack.Navigator>
       <FarmStack.Screen name="FarmsList" component={FarmsScreen} options={{ title: 'Farms' }}/>
-      <FarmStack.Screen name="FarmDetails" component={FarmDetails} options={{ title: 'Details' }}/>
-      <FarmStack.Screen name="FieldDetails" component={FieldDetails} options={{ title: 'Field details' }}/>
+      <FarmStack.Screen name="FarmDetails" component={FarmDetails} options={{ title: 'Farms: Details' }}/>
     </FarmStack.Navigator>
   );
 }
@@ -101,7 +99,7 @@ export default function App() {
       <RecoilRoot>
       <ApolloProvider client={client}>
       <NavigationContainer>
-          <Tab.Navigator screenOptions={({route}) => ({
+          <Tab.Navigator initialRouteName='Workers' screenOptions={({route}) => ({
             tabBarIcon:({focused, color, size}) => {
               let iconName;
               switch (route.name){

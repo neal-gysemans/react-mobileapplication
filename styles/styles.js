@@ -185,7 +185,7 @@ export const styles = theme =>
         },
         flatListTitleNumber: {
             position: "absolute",
-            top: 0,
+            top: -2,
             left: "100%",
             color: theme.colors.BACKGROUND,
             backgroundColor: theme.colors.TEXT,
@@ -193,7 +193,8 @@ export const styles = theme =>
             height: 15,
             textAlignVertical: "center",
             textAlign: "center",
-            fontSize: 8,
+            fontSize: 11,
+            fontWeight: "bold",
             borderRadius: 50,
         },
         flatListTitleText: {
@@ -204,7 +205,7 @@ export const styles = theme =>
             fontSize: 13,
             textAlign: "right",
         },
-        farmListInFieldOwnerDetails: {
+        listWithLabel: {
             marginTop: 15,
             padding: 15,
             borderWidth: 1,
@@ -219,5 +220,8 @@ export const styles = theme =>
             height: 30,
             padding: 5,
             backgroundColor: theme.colors.BACKGROUND,
-        }
+        },
+        language: {
+            opacity: 0.6
+        },
     });
