@@ -2,7 +2,12 @@ import { StyleSheet } from "react-native";
 
 export const text = theme => theme.colors.TEXT;
 export const background = theme => theme.colors.BACKGROUND;
+export const red = theme => theme.colors.RED
+export const blue = theme => theme.colors.BLUE;
+export const green = theme => theme.colors.GREEN;
+
 export const styles = theme =>
+
     StyleSheet.create({
         body: {
             padding: 15,

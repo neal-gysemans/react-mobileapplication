@@ -1,8 +1,13 @@
-import { View, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 
 // Theme
 import useThemedStyles from "../styles/theme/useThemedStyles";
 import { styles } from "../styles/styles";
+
+// firebase
+import '../config/firebase';
+import { useAuthentication } from '../hooks/use_authentication';
+  
 
 // Icons
 import { Icon } from "@react-native-material/core";
@@ -14,6 +19,8 @@ import Stat_heatmap from "./visualisations/statistics_heatmap";
 import Stat_interesting from "./visualisations/statistics_interesting";
 
 export default function HomeScreen({ navigation }) {
+    const {user} = useAuthentication();
+
     // Styling (theme)
     const style = useThemedStyles(styles);
 
@@ -41,24 +48,31 @@ export default function HomeScreen({ navigation }) {
                     <TouchableOpacity style={[style.largeCameraButton, style.mb10]} onPress={() => {navigation.navigate('Camera')}}>
                         <Icon name="camera-iris" size={size} style={style.largeCameraButtonText}/>
                     </TouchableOpacity>
-                    <Stat_lineChart 
-                        title={lineChartTitle}
-                        data={lineChartData}
-                        padding={paddingCharts}
-                    />
-                    <Stat_BarChart 
-                        title={barChartTitle}
-                        data={barChartData}
-                        padding={paddingCharts}
-                    />
-                    <Stat_interesting 
-                        title="Estimated number of strawberries on field 1"
-                        beforeData=""
-                        afterData=" strawberries"
-                        data={17259}    
-                    />
-                    <Stat_heatmap/>
+                    {user?.uid == "uNek9kZlU9W8MAH5qDtze3CBc8j1"
+                    ? <View>
+                        <Text>you are a worker</Text>
+                    </View>
+                    : <View> 
+                        <Stat_lineChart 
+                            title={lineChartTitle}
+                            data={lineChartData}
+                            padding={paddingCharts}
+                        />
+                        <Stat_BarChart 
+                            title={barChartTitle}
+                            data={barChartData}
+                            padding={paddingCharts}
+                        />
+                        <Stat_interesting 
+                            title="Estimated number of strawberries on field 1"
+                            beforeData=""
+                            afterData=" strawberries"
+                            data={17259}    
+                        />
+                        <Stat_heatmap/>
+                    </View>}
             </ScrollView>
                 </View>
     );
+    
 }

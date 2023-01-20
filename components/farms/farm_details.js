@@ -15,6 +15,7 @@ import { GET_FARM_DETAILS } from '../../gql/queries';
 export default function FarmDetailsScreen({ route, navigation }) {
     const { id } = route.params;
     const { data, loading, error } = useQuery(GET_FARM_DETAILS, { variables: {id}});
+    // Styling
     const style = useThemedStyles(styles);
     
     if (loading) return <Fetching message="Fetching data..." />
