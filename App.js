@@ -7,6 +7,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { IconComponentProvider, Icon } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
+// Theme
+import useThemedStyles from "./styles/theme/useThemedStyles";
+import { text, background, red } from "./styles/styles";
+
 import {RecoilRoot} from 'recoil';
 
 // Import for screens
@@ -20,7 +24,6 @@ import PhotoScreen from './components/camera/photoScreen';
 // Authentication screens
 import SignInScreen from './components/authentication/signin_screen';
 import SignUpScreen from './components/authentication/signup_screen';
-
 
 // Provider
 import ThemeProvider from './styles/theme/ThemeProvider';
@@ -88,6 +91,7 @@ function AdminFieldOwnerStackScreen(){
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  
   const {user} = useAuthentication();
 
 
@@ -99,7 +103,7 @@ export default function App() {
       <RecoilRoot>
       <ApolloProvider client={client}>
       <NavigationContainer>
-          <Tab.Navigator initialRouteName='Workers' screenOptions={({route}) => ({
+          <Tab.Navigator initialRouteName='Home' screenOptions={({route}) => ({
             tabBarIcon:({focused, color, size}) => {
               let iconName;
               switch (route.name){
@@ -124,10 +128,10 @@ export default function App() {
               }
               return <Icon name={iconName} size={size} color={color}/>
             },
-            tabBarActiveTintColor: '#ff7a00',
-            tabBarInactiveTintColor: '#ecf0f1',
+            tabBarActiveTintColor: useThemedStyles(red),
+            tabBarInactiveTintColor: useThemedStyles(text),
             tabBarStyle: {
-              backgroundColor: '#2c3e50',
+              backgroundColor: useThemedStyles(background),
             },
             tabBarIconStyle: {
               height: 40
@@ -175,10 +179,10 @@ export default function App() {
               }
               return <Icon name={iconName} size={size} color={color}/>
             },
-            tabBarActiveTintColor: '#ff7a00',
-            tabBarInactiveTintColor: '#ecf0f1',
+            tabBarActiveTintColor: useThemedStyles(red),
+            tabBarInactiveTintColor: useThemedStyles(text),
             tabBarStyle: {
-              backgroundColor: '#2c3e50',
+              backgroundColor: useThemedStyles(background),
             },
           })}>
             <Tab.Screen name="Home" component={HomeScreen}/>

@@ -15,6 +15,7 @@ import { GET_FARM_DETAILS } from '../../gql/queries';
 export default function FarmDetailsScreen({ route, navigation }) {
     const { id } = route.params;
     const { data, loading, error } = useQuery(GET_FARM_DETAILS, { variables: {id}});
+    // Styling
     const style = useThemedStyles(styles);
     
     if (loading) return <Fetching message="Fetching data..." />
@@ -32,7 +33,7 @@ export default function FarmDetailsScreen({ route, navigation }) {
         {data.farm[0].fields.map((field, index) => (
           <Text onPress={() => {handleDetails(index)}} style={style.text} key={index}>{field.name}</Text>
         ))}
-        <Text style={[style.text, style.listLabel]}>Fields</Text>
+        <Text style={[style.text, style.listWithLabelLabel]}>Fields</Text>
       </View>
     </View>
   );

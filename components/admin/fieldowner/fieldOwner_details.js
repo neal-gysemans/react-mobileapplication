@@ -25,10 +25,19 @@ export default function FieldOwnerDetails({ route, navigation }) {
       <Text style={[style.text, style.name]}>{data.fieldowner[0].name}</Text>
       <Text style={style.text}>{data.fieldowner[0].country}, {data.fieldowner[0].city}</Text>
       <View style={style.listWithLabel}>
-        {data.fieldowner[0].farms.map((farm, index) => (
-          <Text style={style.text} key={index}>{farm.name}</Text>
+        {data.fieldowner[0].farms.map((farm, indexFarm) => (
+          <View style={(indexFarm === data.fieldowner[0].farms.length - 1) ? style.none : style.listWithLabelItem} key={`Farm${indexFarm}`}>
+            <Text style={[style.text, style.listWithLabelItemTitle]} key={`keyFarmName${indexFarm}`}>{farm.name}</Text>
+            {farm.startdate && (<Text style={[style.text, style.opacity6]} key={`keyFarmStartDate${indexFarm}`}>{farm.startdate}</Text>)}
+            <View style={style.farmInfoList}>
+              <Text style={[style.text, {fontWeight: "bold"}]}>Fields</Text>
+              {farm.fields.map((field, indexField) => (
+                <Text style={[style.text, style.farmInfoListItem]} key={`keyFarm${indexFarm}Field${indexField}`}>{field.name}</Text>
+              ))}
+            </View>
+          </View>
         ))}
-        <Text style={[style.text, style.listLabel]}>Farms</Text>
+        <Text style={[style.text, style.listWithLabelLabel]}>Farms</Text>
       </View>
     </View>
   );

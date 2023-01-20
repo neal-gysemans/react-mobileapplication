@@ -25,11 +25,11 @@ export default function WorkerDetailsScreen({ route, navigation }) {
       {console.log(data.worker[0].city)}
       <Text style={[style.text, style.name]}>{data.worker[0].name}</Text>
       <Text style={style.text}>{data.worker[0].country}, {data.worker[0].city}</Text>
-      <Text style={[style.text, style.language]}>({data.worker[0].language})</Text>
+      <Text style={[style.text, style.opacity6]}>({data.worker[0].language})</Text>
       <View style={style.listWithLabel}>
         <Text style={style.text}>{data.worker[0].email}</Text>
         <Text style={style.text}>{data.worker[0].phonenumber}</Text>
-        <Text style={[style.text, style.listLabel]}>Contact information</Text>
+        <Text style={[style.text, style.listWithLabelLabel]}>Contact information</Text>
       </View>
     </View>
   );

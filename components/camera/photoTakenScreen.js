@@ -7,17 +7,40 @@ import { styles } from "../../styles/styles";
 // Icons
 import { Icon } from "@react-native-material/core";
 
+// Screens
+import Fetching from "../../layout/message_fetching";
+
+// Use effect
+import { useEffect, useState } from "react";
+
+// Geolocation
+import * as Location from 'expo-location';
+
 export default function TakePhotoScreen({ route, navigation }) {
     // Styling (theme)
     const style = useThemedStyles(styles);
 
     // Image (link to local image)
     const { image } = route.params;
-    const { locationX } = route.params;
-    const { locationY } = route.params;
+
+    // Geolocation
+    const [status, requestPermission] = Location.useForegroundPermissions();
+    const [location, setLocation] = useState(null);
 
     // Size of icon
     const size = 25;
+
+    requestPermission();
+
+    useEffect( () => {
+        (async () => {
+            const locationData = await Location.getCurrentPositionAsync({})
+            setLocation(locationData.coords);
+        })();
+        
+    }, [])
+
+    if(!location) return <Fetching message="Looking for location..."/>
 
     return (
         <View style={style.body}>
@@ -36,7 +59,7 @@ export default function TakePhotoScreen({ route, navigation }) {
     }
 
     function usePhoto() {
-        let locationString = "x: " + locationX + "\n" + "y: " + locationY;
+        let locationString = "x: " + location.longitude + "\n" + "y: " + location.latitude;
         // Do things with this image
         alert(locationString)
     }

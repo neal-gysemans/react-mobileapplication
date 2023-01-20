@@ -69,6 +69,11 @@ query GET_FIELDOWNER_DETAILS($id: Int!) {
     farms {
       id
       name
+      startdate
+      fields {
+        id
+        name
+      }
     }
   }
 }`;
