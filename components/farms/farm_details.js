@@ -32,7 +32,7 @@ export default function FarmDetailsScreen({ route, navigation }) {
         {data.farm[0].fields.map((field, index) => (
           <Text onPress={() => {handleDetails(index)}} style={style.text} key={index}>{field.name}</Text>
         ))}
-        <Text style={[style.text, style.listLabel]}>Fields</Text>
+        <Text style={[style.text, style.listWithLabelLabel]}>Fields</Text>
       </View>
     </View>
   );

@@ -214,15 +214,22 @@ export const styles = theme =>
             borderColor: theme.colors.TEXT,
             position: "relative"
         },
-        listLabel: {
+        listWithLabelItem: {
+            paddingBottom: 25,
+        },
+        listWithLabelItemTitle: {
+            fontWeight: "bold",
+            fontSize: 18,
+        },
+        listWithLabelLabel: {
             position: "absolute",
-            left: 5,
+            left: 10,
             top: -15,
             height: 30,
             padding: 5,
             backgroundColor: theme.colors.BACKGROUND,
         },
-        language: {
+        opacity6: {
             opacity: 0.6
         },
         themeButton: {
@@ -234,5 +241,10 @@ export const styles = theme =>
         themeButtonText: {
             textAlign: "center",
             color: theme.colors.BACKGROUND,
+        },
+        farmInfoList:{
+            marginTop: 10,
+        },
+        farmInfoListItem:{
         },
     });
