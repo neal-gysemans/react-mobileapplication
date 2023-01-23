@@ -66,7 +66,7 @@ query GET_FIELDOWNER_DETAILS($id: Int!) {
     country
     city
     language
-    farms {
+    farms (order_by: {name: asc}){
       id
       name
       startdate
