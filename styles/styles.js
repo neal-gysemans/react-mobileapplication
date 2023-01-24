@@ -14,6 +14,15 @@ export const styles = theme =>
             flex: 1,
             backgroundColor: theme.colors.BACKGROUND,
             width: '100%',
+            position: "relative",
+        },
+        loader: {
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: [{translateX: -50, translateY: -50}],
+            width: 100,
+            height: 100,
         },
         text: {
             color: theme.colors.TEXT,
