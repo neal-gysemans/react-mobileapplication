@@ -20,24 +20,45 @@ import FarmItem from "./farms/farm_item";
 import { useRecoilValue } from "recoil";
 import { farmState } from "../store";
 
+import { useState, useEffect } from "react";
+
+import dbAPI from "../api/dbAPI";
+
 export default function FarmsScreen({ navigation }) {
     // Styling (theme)
     let style = useThemedStyles(styles);
 
     const farmId = useRecoilValue(farmState);
-    const {data, loading, error} = useQuery(GET_FIELDOWNER_FARMS, { variables: {farmId}, skip: farmId === 0});
 
-    if (loading) return <Fetching message="Fetching data..." />
-    if (error) return <Error error={error} />
+    const [farms, setFarms] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const result = await dbAPI.getFarms();
+          console.log('result', result.data);
+          setFarms(result.data);
+        } catch (error) {
+          console.log('Something went wrong with the database api.', error);
+        }
+        setLoading(false);
+      }
+      fetchData();
+    }, []);
     
+    if(loading) return <Fetching/>
+
+
     function handleDetails(item){
-      navigation.navigate('FarmDetails', { id: item.id });
+      navigation.navigate('FarmDetails', { id: item.farmID });
     }
   
       return (
         <View style={style.body}>
         <FlatList
-          data={data.farm}
+          data={farms} 
           renderItem={({ item }) => <FarmItem item={item} onPress={handleDetails}/>}
           keyExtractor={(item, index) => index}
           ItemSeparatorComponent={Separator}
