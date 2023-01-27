@@ -38,8 +38,8 @@ export default function TakePhotoScreen({ navigation }) {
     
     const takePicture = async () => {
         if(camera){
-            const data = await camera.takePictureAsync(null);
-            setImage(data.uri);
+            const data = await camera.takePictureAsync(null);            
+            setImage(data.uri);            
             navigation.navigate('Taken picture', {image: data.uri})
         }
     };
