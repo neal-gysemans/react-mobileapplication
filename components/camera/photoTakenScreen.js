@@ -13,6 +13,9 @@ import Fetching from "../../layout/message_fetching";
 // Use effect
 import { useEffect, useState } from "react";
 
+// URL to base64
+import * as FileSystem from 'expo-file-system';
+
 // Geolocation
 import * as Location from 'expo-location';
 
@@ -23,7 +26,16 @@ export default function TakePhotoScreen({ route, navigation }) {
     // Image (link to local image)
     const { image } = route.params;
 
-    // Geolocation
+    useEffect(() => {
+        (async () => {
+            const base64Image = await FileSystem.readAsStringAsync(image, { encoding: 'base64'});
+            console.log("Starting with image: ", image + "\n\n");
+            fetch("https://project4dev6.loca.lt/api/data-strawberry?", {method: 'POST', body: JSON.stringify({image: image})})
+                .then(response => response.text())
+                .then(result => console.log(result));
+        })();
+    }, []);
+
     const [status, requestPermission] = Location.useForegroundPermissions();
     const [location, setLocation] = useState(null);
 
@@ -41,7 +53,7 @@ export default function TakePhotoScreen({ route, navigation }) {
     }, [])
 
     if(!location) return <Fetching message="Looking for location..."/>
-
+    
     return (
         <View style={style.body}>
             <Image source={{ uri: image }} style={style.img}/>
