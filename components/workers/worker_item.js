@@ -10,11 +10,11 @@ export default function WorkerItem({ item, onPress }) {
   return (
     <Pressable style={style.flatListItem} onPress={() => onPress(item)}>
       <View style={style.flatListTitle}>
-        <Text style={[style.text, style.flatListTitleText]}>{item.worker.name}</Text>
+        <Text style={[style.text, style.flatListTitleText]}>{item.name}</Text>
       </View>
       <View>
-        <Text style={[style.text, style.flatListInfo]}>{item.worker.country}</Text>
-        <Text style={[style.text, style.flatListInfo]}>{item.worker.city}</Text>
+        <Text style={[style.text, style.flatListInfo]}>{item.country}</Text>
+        <Text style={[style.text, style.flatListInfo]}>{item.city}</Text>
       </View>
     </Pressable>
   );
