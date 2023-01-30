@@ -12,25 +12,44 @@ import Error from '../../layout/message_error';
 import { useQuery } from "@apollo/client";
 import { GET_WORKER_DETAILS } from '../../gql/queries';
 
+import dbAPI from '../../api/dbAPI';
+import { useState, useEffect } from 'react';
+
 export default function WorkerDetailsScreen({ route, navigation }) {
     const { id } = route.params;
-    const { data, loading, error } = useQuery(GET_WORKER_DETAILS, { variables: {id}});
+    const [details, setDetails] = useState(null);
+    const [loading, setLoading] = useState(true);
     const style = useThemedStyles(styles);
   
-    if (loading) return <Fetching message="Fetching data..." />
-    if (error) return <Error error={error} />
+    useEffect(() => {
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const result = await dbAPI.getWorkerDetails(id);
+          console.log('details', result.data[0]);
+          setDetails(result.data[0]);
+        } catch (error) {
+          console.log('Something went wrong with the database api.', error);
+          <Error/>
+        }
+        setLoading(false);
+      }
+      fetchData();
+    }, []);
     
+    if(loading) return <Fetching/>
+
   return (
     <View style={style.body}>
-      {console.log(data.worker[0].city)}
-      <Text style={[style.text, style.name]}>{data.worker[0].name}</Text>
-      <Text style={style.text}>{data.worker[0].country}, {data.worker[0].city}</Text>
-      <Text style={[style.text, style.opacity6]}>({data.worker[0].language})</Text>
+      {console.log(details)}
+      <Text style={[style.text, style.name]}>{details.name}</Text>
+      <Text style={style.text}>{details.country}, {details.city}</Text>
+      <Text style={[style.text, style.opacity6]}>({details.language.name})</Text>
       <View style={style.listWithLabel}>
-        <Text style={style.text}>{data.worker[0].email}</Text>
-        <Text style={style.text}>{data.worker[0].phonenumber}</Text>
+        <Text style={style.text}>{details.emailAddress}</Text>
+        <Text style={style.text}>{details.phoneNumber}</Text>
         <Text style={[style.text, style.listWithLabelLabel]}>Contact information</Text>
       </View>
-    </View>
+    </View> 
   );
 };

@@ -8,35 +8,54 @@ import { styles } from "../../../styles/styles";
 import Fetching from '../../../layout/message_fetching';
 import Error from '../../../layout/message_error';
 
-// Apollo
-import { useQuery } from "@apollo/client";
-import { GET_FIELDOWNER_DETAILS } from '../../../gql/queries';
+import dbAPI from '../../../api/dbAPI';
+import { useState, useEffect } from 'react';
 
 export default function FieldOwnerDetails({ route, navigation }) {
     const { id } = route.params;
-    const { data, loading, error } = useQuery(GET_FIELDOWNER_DETAILS, { variables: {id}});
+    const [details, setDetails] = useState(null);
+    const [details2, setDetails2] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     const style = useThemedStyles(styles);
     
-    if (loading) return <Fetching message="Fetching data..." />
-    if (error) return <Error error={error} />
-
+    useEffect(() => {
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const result1 = await dbAPI.getFieldOwnerDetails(id);
+          const result2 = await dbAPI.getFarmFromFieldOwner(id);
+          console.log('details', result2.data);
+          setDetails(result1.data[0]);
+          setDetails2(result2.data[0]);
+        } catch (error) {
+          console.log('Something went wrong with the database api.', error);
+          <Error/>
+        }
+        setLoading(false);
+      }
+      fetchData();
+    }, []);
+    
+    if(loading) return <Fetching/>
   return (
     <View style={style.body}>
-      <Text style={[style.text, style.name]}>{data.fieldowner[0].name}</Text>
-      <Text style={style.text}>{data.fieldowner[0].country}, {data.fieldowner[0].city}</Text>
+      <Text style={[style.text, style.name]}>{details.name}</Text>
+      <Text style={style.text}>{details.country}, {details.city}</Text>
       <View style={style.listWithLabel}>
-        {data.fieldowner[0].farms.map((farm, indexFarm) => (
-          <View style={(indexFarm === data.fieldowner[0].farms.length - 1) ? style.none : style.listWithLabelItem} key={`Farm${indexFarm}`}>
+        {details.farms.map((farm, indexFarm) => (
+          <View style={(indexFarm === details.farms.length - 1) ? style.none : style.listWithLabelItem} key={`Farm${indexFarm}`}>
             <Text style={[style.text, style.listWithLabelItemTitle]} key={`keyFarmName${indexFarm}`}>{farm.name}</Text>
-            {farm.startdate && (<Text style={[style.text, style.opacity6]} key={`keyFarmStartDate${indexFarm}`}>{farm.startdate}</Text>)}
-            <View style={style.farmInfoList}>
-              <Text style={[style.text, {fontWeight: "bold"}]}>Fields</Text>
-              {farm.fields.map((field, indexField) => (
-                <Text style={[style.text, style.farmInfoListItem]} key={`keyFarm${indexFarm}Field${indexField}`}>{field.name}</Text>
-              ))}
-            </View>
+            {farm.started && (<Text style={[style.text, style.opacity6]} key={`keyFarmStartDate${indexFarm}`}>{farm.started}</Text>)}
           </View>
         ))}
+        <View style={style.farmInfoList}>
+        <Text style={[style.text, {fontWeight: "bold"}]}>Fields</Text>
+        {details2.fields.map((field, indexField) => (
+          <Text style={[style.text, style.farmInfoListItem]} key={`Field${indexField}`}>{field.name}</Text>
+        ))}
+        </View>
+
         <Text style={[style.text, style.listWithLabelLabel]}>Farms</Text>
       </View>
     </View>

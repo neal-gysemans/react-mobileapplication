@@ -1,7 +1,7 @@
-import { FlatList, View } from "react-native"
+import { FlatList, View, Text } from "react-native"
 
 // Apollo
-import { useQuery } from "@apollo/client";
+import { disableExperimentalFragmentVariables, useQuery } from "@apollo/client";
 import { GET_WORKERS_FROM_FARM } from "../gql/queries";
 
 //theme
@@ -21,42 +21,44 @@ import { useRecoilValue } from "recoil";
 import { farmState } from "../store";
 import { useEffect, useState } from "react";
 
+import { useState, useEffect } from "react";
+
+import dbAPI from '../api/dbAPI';
+
 export default function WorkersScreen({ navigation }) {
   // Styling (theme)
   let style = useThemedStyles(styles);
+  const [workers, setWorkers] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const farmId = useRecoilValue(farmState);
-  const {data, loading, error} = useQuery(GET_WORKERS_FROM_FARM, { variables: {farmId}, skip: farmId === 0});
-
-  const [workers, setWorkers] = useState(null);
-
-  async function getWorkers(){
-    const result = await getWorkers();
-    setWorkers(result);
-  }
-
-  async function getWorkers() {
-      let data = await fetch(baseUrl + "/Worker/")
-          .then((res) => res.json())
-          .then((data) => console.log(data))
-      return data;
-  }
-
+  
   useEffect(() => {
-    getWorkers()
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const result = await dbAPI.getWorkers();
+        console.log('result', result.data);
+        setWorkers(result.data);
+      } catch (error) {
+        console.log('Something went wrong with the database api.', error);
+      }
+      setLoading(false);
+    }
+    fetchData();
   }, []);
-
-  if (loading) return <Fetching message="Fetching data..." />
-  if (error) return <Error error={error} />
+    
   
   function handleDetails(item){
-    navigation.navigate('WorkerDetails', { id: item.worker.id });
+    navigation.navigate('WorkerDetails', { id: item.workerID });
   }
+  if(loading) return <Fetching/>
 
+  console.log(workers);
     return (
       <View style={style.body}>
       <FlatList
-        data={data.farmStaff}
+        data={workers}
         renderItem={({ item }) => <WorkerItem item={item} onPress={handleDetails}/>}
         keyExtractor={(item, index) => index}
         ItemSeparatorComponent={Separator}

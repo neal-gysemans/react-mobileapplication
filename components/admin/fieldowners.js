@@ -20,25 +20,43 @@ import FieldOwnerItem from "./fieldowner/fieldOwner_item";
 import { useRecoilValue } from "recoil";
 import { adminFieldOwnerState } from "../../store";
 
+import { useState, useEffect } from "react";
+import dbAPI from "../../api/dbAPI";
+
 export default function FarmsScreen({ navigation }) {
     // Styling (theme)
     let style = useThemedStyles(styles);
+    const [fieldOwners, setFieldOwners] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const fieldOwnerId = useRecoilValue(adminFieldOwnerState);
-    const {data, loading, error} = useQuery(GET_FIELDOWNERS, { variables: {fieldOwnerId}, skip: fieldOwnerId === 0});
-
-
-    if (loading) return <Fetching message="Fetching data..." />
-    if (error) return <Error error={error} />
+    
+    useEffect(() => {
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const result = await dbAPI.getFieldOwners();
+          console.log('fieldowners', result.data);
+          setFieldOwners(result.data);
+        } catch (error) {
+          console.log('Something went wrong with the database api.', error);
+          <Error/>
+        }
+        setLoading(false);
+      }
+      fetchData();
+    }, []);
+    
+    if(loading) return <Fetching/>
     
     function handleDetails(item){
-      navigation.navigate('FieldOwnerDetails', { id: item.id });
+      navigation.navigate('FieldOwnerDetails', { id: item.fieldOwnerID });
     }
   
       return (
         <View style={style.body}>
         <FlatList
-          data={data.fieldowner}
+          data={fieldOwners}
           renderItem={({ item }) => <FieldOwnerItem item={item} onPress={handleDetails}/>}
           keyExtractor={(item, index) => index}
           ItemSeparatorComponent={Separator}
