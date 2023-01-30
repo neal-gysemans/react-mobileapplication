@@ -19,6 +19,7 @@ import WorkerItem from "./workers/worker_item";
 // Recoil
 import { useRecoilValue } from "recoil";
 import { farmState } from "../store";
+import { useEffect, useState } from "react";
 
 export default function WorkersScreen({ navigation }) {
   // Styling (theme)
@@ -26,6 +27,24 @@ export default function WorkersScreen({ navigation }) {
 
   const farmId = useRecoilValue(farmState);
   const {data, loading, error} = useQuery(GET_WORKERS_FROM_FARM, { variables: {farmId}, skip: farmId === 0});
+
+  const [workers, setWorkers] = useState(null);
+
+  async function getWorkers(){
+    const result = await getWorkers();
+    setWorkers(result);
+  }
+
+  async function getWorkers() {
+      let data = await fetch(baseUrl + "/Worker/")
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+      return data;
+  }
+
+  useEffect(() => {
+    getWorkers()
+  }, []);
 
   if (loading) return <Fetching message="Fetching data..." />
   if (error) return <Error error={error} />
