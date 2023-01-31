@@ -2,13 +2,13 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 // Theme
 import useThemedStyles from "../../styles/theme/useThemedStyles";
-import { styles } from "../../styles/styles";
+import { styles, text, background } from "../../styles/styles";
 
 // Icons
 import { Icon } from "@react-native-material/core";
 
 // Geolocation
-import OwnLocation from "../../config/location"
+import * as Location from "expo-location";
 
 // Screens
 import Fetching from "../../layout/message_fetching";
@@ -28,6 +28,10 @@ import { SelectList } from 'react-native-dropdown-select-list'
 
 
 export default function TakePhotoScreen({ route, navigation }) {
+    // Styling (theme)
+    const style = useThemedStyles(styles);
+    const textColor = useThemedStyles(text);
+    const bgColor = useThemedStyles(background);
 
     // Flowers
     const [nrFlowers, setNrFlowers] = useState(null);
@@ -41,10 +45,7 @@ export default function TakePhotoScreen({ route, navigation }) {
 
     // Selectlist
     const [selected, setSelected] = useState(null);
-    const [data, setData] = useState(null);
-    
-    // Styling (theme)
-    const style = useThemedStyles(styles);
+    const [fieldData, setFieldData] = useState(null);
 
     // Image (link to local image)
     const { image } = route.params;
@@ -59,17 +60,23 @@ export default function TakePhotoScreen({ route, navigation }) {
     }, []);
 
     async function getLocation() {
-        global.location = "10";
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if(status === 'granted') {
+            global.location = await Location.getCurrentPositionAsync({});
+        }
     }
 
     async function getFarmDetails(farmId){
         try{
             const result = await DbAPI.getFarmDetails(farmId);
-            console.log(result.data);
             setFarm(result?.data[0]);
             setFields(result?.data[0].fields);
+        	let newArray = result?.data[0].fields.map((item, index) => {
+        	    return {key: item.fieldID, value: item.name}
+        	})
+        	setFieldData(newArray);
         } catch (error){
-            console.log(error);
+            return;
         }
     }
 
@@ -81,7 +88,7 @@ export default function TakePhotoScreen({ route, navigation }) {
 
     if(!farm) return <Fetching message={`Getting farm: ${farmId}...`}/>
     if(!fields) return <Fetching message={`Getting fields from farm: ${farmId}...`}/>
-    if(!location) return <Fetching message="Looking for location..."/>
+    if(!global.location) return <Fetching message="Looking for location..."/>
     if(!nrFlowers) return <Fetching message="Getting number of flowers..."/>
     
     return (
@@ -97,12 +104,14 @@ export default function TakePhotoScreen({ route, navigation }) {
             <View style={style.selectList}>
                 <SelectList 
                   setSelected={(item) => setSelected(item)} 
-                  data={data}
-                  dropdownTextStyles={{color: 'white'}}
-                  inputStyles={{color: 'white'}}
+                  data={fieldData}
+                  boxStyles={{backgroundColor: bgColor}}
+                  dropdownStyles={{backgroundColor: bgColor}}
+                  dropdownTextStyles={{color: textColor, textAlign: 'right'}}
+                  inputStyles={{color: textColor, width: 140, textAlign: 'right'}}
                   arrowicon={<Icon name="chevron-down" size={12} color={'white'} style={{paddingTop: 3, paddingLeft: 10}}/>}
                   search={false} 
-                  defaultOption={data[0]}/>
+                  defaultOption={fieldData[0]}/>
             </View>
         </View>
     )
@@ -115,26 +124,34 @@ export default function TakePhotoScreen({ route, navigation }) {
         // Do things with this image
         // Post of coordinate
         /* Coordinates */
-        let x = location.longitude;
-        let y = location.latitude;
-
-        const coordinateResult = await DbAPI.postCoordinate({"x": x, "y": y});
-        console.log(coordinateResult);
+        let x = global.location.coords.longitude;
+        let y = global.location.coords.latitude;
+        try{
+            await DbAPI.addCoordinate({"x": JSON.stringify(x), "y": JSON.stringify(y)});
+        } catch (err){
+            return;
+        }
         // Get this id back
 
         // Post of photoData
         let fieldId = selected;
+        // nrFlowers needs to be reworked after AI Puts the result in JSON instead of text
         let amtFlowers = nrFlowers;
+        amtFlowers = 15;
+        console.log("amtFlowers:", amtFlowers);
         // WorkerID
         // FieldownerID
-                // let fOwnerId = farm.fieldOwnerID;
+        let fOwnerId = farm.fieldOwnerID;
         // Current userId
-                // let workerId = cUser.id;
+        let workerId = 3;// cUser.id;
         /* Make a date */
-        let dateYear = new Date().getFullYear();
-        let dateMonth = new Date().getMonth() + 1;
-        let dateDay = new Date().getDate();
-        let date = dateDay + "/" + dateMonth + "/" + dateYear;
+        let date = new Date()
+        
+        try{
+            await DbAPI.addPhotoData({"fieldID": fieldId, "amountFlowers": amtFlowers, "workerID": workerId, "date": date, "fieldOwnerID": fOwnerId});
+        } catch (err){
+            return;
+        }
 
     }    
 }

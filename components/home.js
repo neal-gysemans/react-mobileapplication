@@ -9,7 +9,7 @@ import '../config/firebase';
 import { useAuthentication } from '../hooks/use_authentication';
   
 // Geolocation
-global.location = "6"
+global.location = null;
 
 // Icons
 import { Icon } from "@react-native-material/core";
