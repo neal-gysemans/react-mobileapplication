@@ -21,7 +21,7 @@ import { useRecoilValue } from "recoil";
 import { adminFieldOwnerState } from "../../store";
 
 import { useState, useEffect } from "react";
-import dbAPI from "../../api/dbAPI";
+import DbAPI from "../../api/DbAPI";
 
 export default function FarmsScreen({ navigation }) {
     // Styling (theme)
@@ -35,7 +35,7 @@ export default function FarmsScreen({ navigation }) {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const result = await dbAPI.getFieldOwners();
+          const result = await DbAPI.getFieldOwners();
           console.log('fieldowners', result.data);
           setFieldOwners(result.data);
         } catch (error) {

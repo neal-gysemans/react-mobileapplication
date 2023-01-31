@@ -28,6 +28,7 @@ export default function TakePhotoScreen({ navigation }) {
     const [camera, setCamera] = useState(null);
     const [image, setImage] = useState(null);
     const [type, setType] = useState(CameraType.back);
+    const [fields, setFields] = useState(null)
 
     useEffect(() => {
         (async () => {
@@ -40,7 +41,7 @@ export default function TakePhotoScreen({ navigation }) {
         if(camera){
             const data = await camera.takePictureAsync(null);            
             setImage(data.uri);            
-            navigation.navigate('Taken picture', {image: data.uri})
+            navigation.navigate('Taken picture', {image: data.uri, fields: fields})
         }
     };
 

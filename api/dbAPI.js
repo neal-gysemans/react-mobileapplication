@@ -3,7 +3,8 @@ import configData from "../config/api.json";
 
 const baseUrl = configData.database;
 
-class dbAPI {
+class DbAPI {
+    // Gets
     static getWorkers() {
         return axios.get(baseUrl + "Worker");
     }
@@ -16,6 +17,7 @@ class dbAPI {
     static getFarms() {
         return axios.get(baseUrl + "Farm");
     }
+
     static getFarmDetails(id) {
         return axios.get(baseUrl + "Farm/" + id);
     }
@@ -31,6 +33,26 @@ class dbAPI {
     static getFarmFromFieldOwner(id) {
         return axios.get(baseUrl + "Farm/FieldOwner/" + id);
     }
+
+    // Posts
+    // Post coordinate
+    static async addCoordinate(coordinate){
+        console.log("data:", coordinate);
+        try{
+            await axios.post(baseUrl + "/Coordinate", coordinate);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    // Post photodata
+    static async addPhotoData(photoData){
+        console.log("data:", photoData);
+        try{
+            await axios.post(baseUrl + "/PhotoData", photoData);
+        } catch (err){
+            console.log(err);
+        }
+    }
 }
 
-export default dbAPI;
+export default DbAPI;
