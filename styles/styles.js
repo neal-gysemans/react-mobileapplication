@@ -102,6 +102,11 @@ export const styles = theme =>
             justifyContent: "center",
             alignItems: "center"
         },
+        selectList:{
+            position: "absolute",
+            top: 25,
+            right: 25,
+        },
         mb10: {
             marginBottom: 10,
         },
@@ -258,7 +263,5 @@ export const styles = theme =>
         },
         farmInfoList:{
             marginTop: 10,
-        },
-        farmInfoListItem:{
         },
     });

@@ -8,6 +8,8 @@ import { styles } from "../styles/styles";
 import '../config/firebase';
 import { useAuthentication } from '../hooks/use_authentication';
   
+// Geolocation
+global.location = "6"
 
 // Icons
 import { Icon } from "@react-native-material/core";

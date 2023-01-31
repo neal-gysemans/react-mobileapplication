@@ -3,7 +3,7 @@ import configData from "../config/api.json";
 
 const baseUrl = configData.database;
 
-class dbAPI {
+class DbAPI {
     static getWorkers() {
         return axios.get(baseUrl + "Worker");
     }
@@ -16,6 +16,7 @@ class dbAPI {
     static getFarms() {
         return axios.get(baseUrl + "Farm");
     }
+
     static getFarmDetails(id) {
         return axios.get(baseUrl + "Farm/" + id);
     }
@@ -33,4 +34,4 @@ class dbAPI {
     }
 }
 
-export default dbAPI;
+export default DbAPI;

@@ -21,9 +21,7 @@ import { useRecoilValue } from "recoil";
 import { farmState } from "../store";
 import { useEffect, useState } from "react";
 
-import { useState, useEffect } from "react";
-
-import dbAPI from '../api/dbAPI';
+import DbAPI from '../api/DbAPI';
 
 export default function WorkersScreen({ navigation }) {
   // Styling (theme)
@@ -37,7 +35,7 @@ export default function WorkersScreen({ navigation }) {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const result = await dbAPI.getWorkers();
+        const result = await DbAPI.getWorkers();
         console.log('result', result.data);
         setWorkers(result.data);
       } catch (error) {

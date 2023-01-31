@@ -9,7 +9,7 @@ import Fetching from '../../layout/message_fetching';
 import Error from '../../layout/message_error';
 
 // queries
-import dbAPI from '../../api/dbAPI';
+import DbAPI from '../../api/DbAPI';
 import { useState, useEffect } from "react";
 
 export default function FarmDetailsScreen({ route, navigation }) {
@@ -23,7 +23,7 @@ export default function FarmDetailsScreen({ route, navigation }) {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const result = await dbAPI.getFarmDetails(id);
+          const result = await DbAPI.getFarmDetails(id);
           console.log('details', result.data[0]);
           setDetails(result.data[0]);
         } catch (error) {
