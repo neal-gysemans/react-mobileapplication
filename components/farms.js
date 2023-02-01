@@ -39,7 +39,7 @@ export default function FarmsScreen({ navigation }) {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const result = await dbAPI.getFarms();
+          const result = await DbAPI.getFarms();
           //console.log('result', result.data);
           setFarms(result.data);
         } catch (error) {

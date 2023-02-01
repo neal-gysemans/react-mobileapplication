@@ -9,7 +9,7 @@ import { styles } from "../../styles/styles";
 // Layout
 import Error from '../../layout/message_error';
 
-import dbAPI from '../../api/dbAPI';
+import dbAPI from '../../api/DbAPI';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";

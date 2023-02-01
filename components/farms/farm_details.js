@@ -84,6 +84,10 @@ export default function FarmDetailsScreen({ route, navigation }) {
     if(!global.location) getLocation();
   }, []);
 
+  function handleEdit(){
+    console.log('pressed Edit');
+  }
+
   async function getFarmDetails(){
     try{
       const result = await DbAPI.getFarmDetails(id);
@@ -116,7 +120,7 @@ export default function FarmDetailsScreen({ route, navigation }) {
     async function deleteFarm(id){
       console.log("farmski" , id);
       try {
-        dbAPI.deleteFarm(id);
+        DbAPI.deleteFarm(id);
       } catch (error) {
         console.log('Something went wrong with the database api.', error);
         <Error/>

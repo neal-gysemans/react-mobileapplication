@@ -285,7 +285,7 @@ export const styles = theme =>
             paddingHorizontal: 15,
             paddingVertical: 5,
             borderRadius: 50
-        }
+        },
         farmsList:{
             height: '90%',
         },

@@ -22,7 +22,7 @@ import { farmState } from "../store";
 import { useEffect, useState } from "react";
 
 
-import dbAPI from '../api/dbAPI';
+import DbAPI from '../api/DbAPI';
 
 export default function WorkersScreen({ navigation }) {
   // Styling (theme)
