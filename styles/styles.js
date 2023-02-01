@@ -226,7 +226,7 @@ export const styles = theme =>
             textAlign: "right",
         },
         listWithLabel: {
-            marginTop: 15,
+            marginVertical: 15,
             padding: 15,
             borderWidth: 1,
             borderType: "solid",
@@ -264,4 +264,11 @@ export const styles = theme =>
         farmInfoList:{
             marginTop: 10,
         },
+        mapMarker:{
+            backgroundColor: theme.colors.BACKGROUND,
+            color: theme.colors.TEXT,
+            paddingHorizontal: 15,
+            paddingVertical: 5,
+            borderRadius: 50
+        }
     });

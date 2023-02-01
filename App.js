@@ -39,6 +39,7 @@ import { useAuthentication } from './hooks/use_authentication';
 // Stack screens
 import WorkerDetails from './components/workers/worker_details';
 import FarmDetails from './components/farms/farm_details';
+import FieldDetails from './components/fields/field_details';
 import AdminFieldOwnerDetails from './components/admin/fieldowner/fieldOwner_details'
 
 // there is a warning that does not matter
@@ -73,6 +74,7 @@ function FarmStackScreen() {
     <FarmStack.Navigator>
       <FarmStack.Screen name="FarmsList" component={FarmsScreen} options={{ title: 'Farms' }}/>
       <FarmStack.Screen name="FarmDetails" component={FarmDetails} options={{ title: 'Farms: Details' }}/>
+      <FarmStack.Screen name="FieldDetails" component={FieldDetails} options={{ title: 'Field: Details' }}/>
     </FarmStack.Navigator>
   );
 }
