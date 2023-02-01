@@ -138,7 +138,7 @@ export default function TakePhotoScreen({ route, navigation }) {
         // nrFlowers needs to be reworked after AI Puts the result in JSON instead of text
         let amtFlowers = nrFlowers;
         amtFlowers = 15;
-        console.log("amtFlowers:", amtFlowers);
+        console.log("amtFlowers:", nrFlowers);
         // WorkerID
         // FieldownerID
         let fOwnerId = farm.fieldOwnerID;

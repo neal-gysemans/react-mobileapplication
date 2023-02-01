@@ -17,9 +17,10 @@ export default function Stat_LineChart(props){
       <LineChart
         data={props.data}
         width={Dimensions.get("window").width - props.padding} // Width of screen - width of body - width of padding
-        height={220}
+        height={250}
         yAxisLabel=""
-        yAxisSuffix="k"
+        yAxisSuffix=""
+        verticalLabelRotation={45}
         yAxisInterval={1} // optional, defaults to 1
         chartConfig={{
           backgroundGradientFrom: textColor,

@@ -33,6 +33,10 @@ class DbAPI {
     static getFarmFromFieldOwner(id) {
         return axios.get(baseUrl + "Farm/FieldOwner/" + id);
     }
+    // Get amount of strawberries over one year
+    static getAmountOfFieldOwnerOverYear(fieldOwnerId, year) {
+        return axios.get(baseUrl + "/PhotoData/fieldOwner/" + fieldOwnerId + "/year/" + year);
+    }
 
     // Posts
     // Post coordinate
