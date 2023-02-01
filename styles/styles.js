@@ -303,10 +303,6 @@ export const styles = theme =>
             padding: 10,
             borderRadius:10,
         },
-        fab:{
-            backgroundColor: theme.colors.TEXT,
-            color: theme.colors.BACKGROUND
-        },
         addLabel:{
             color: theme.colors.TEXT,
             fontSize: 15,
