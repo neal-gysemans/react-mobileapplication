@@ -117,6 +117,11 @@ export const styles = theme =>
             marginLeft: 'auto',
             marginRight: 'auto',
         },
+        selectList:{
+            position: "absolute",
+            top: 25,
+            right: 25,
+        },
         mb10: {
             marginBottom: 10,
         },
@@ -236,7 +241,7 @@ export const styles = theme =>
             textAlign: "right",
         },
         listWithLabel: {
-            marginTop: 15,
+            marginVertical: 15,
             padding: 15,
             borderWidth: 1,
             borderType: "solid",
@@ -274,8 +279,13 @@ export const styles = theme =>
         farmInfoList:{
             marginTop: 10,
         },
-        farmInfoListItem:{
-        },
+        mapMarker:{
+            backgroundColor: theme.colors.BACKGROUND,
+            color: theme.colors.TEXT,
+            paddingHorizontal: 15,
+            paddingVertical: 5,
+            borderRadius: 50
+        }
         farmsList:{
             height: '90%',
         },

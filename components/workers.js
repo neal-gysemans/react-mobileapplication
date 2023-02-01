@@ -36,7 +36,7 @@ export default function WorkersScreen({ navigation }) {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const result = await dbAPI.getWorkers();
+        const result = await DbAPI.getWorkers();
         console.log('result', result.data);
         setWorkers(result.data);
       } catch (error) {

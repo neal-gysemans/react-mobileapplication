@@ -12,7 +12,7 @@ import Error from '../../layout/message_error';
 import { useQuery } from "@apollo/client";
 import { GET_WORKER_DETAILS } from '../../gql/queries';
 
-import dbAPI from '../../api/dbAPI';
+import DbAPI from '../../api/DbAPI';
 import { useState, useEffect } from 'react';
 
 export default function WorkerDetailsScreen({ route, navigation }) {
@@ -25,7 +25,7 @@ export default function WorkerDetailsScreen({ route, navigation }) {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const result = await dbAPI.getWorkerDetails(id);
+          const result = await DbAPI.getWorkerDetails(id);
           console.log('details', result.data[0]);
           setDetails(result.data[0]);
         } catch (error) {

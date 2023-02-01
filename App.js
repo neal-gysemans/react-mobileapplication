@@ -39,6 +39,7 @@ import { useAuthentication } from './hooks/use_authentication';
 // Stack screens
 import WorkerDetails from './components/workers/worker_details';
 import FarmDetails from './components/farms/farm_details';
+import FieldDetails from './components/fields/field_details';
 import AdminFieldOwnerDetails from './components/admin/fieldowner/fieldOwner_details'
 import AddWorker from './components/workers/worker_add';
 import AddFarm from './components/farms/farm_add';

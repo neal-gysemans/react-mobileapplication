@@ -8,6 +8,8 @@ import { styles } from "../styles/styles";
 import '../config/firebase';
 import { useAuthentication } from '../hooks/use_authentication';
   
+// Geolocation
+global.location = null;
 
 // Icons
 import { Icon } from "@react-native-material/core";
@@ -17,20 +19,47 @@ import Stat_lineChart from './visualisations/statistics_lineChart'
 import Stat_BarChart from './visualisations/statistics_barChart'
 import Stat_heatmap from "./visualisations/statistics_heatmap";
 import Stat_interesting from "./visualisations/statistics_interesting";
+import { useEffect, useState } from "react";
+import DbAPI from "../api/DbAPI";
+
+import Fetching from "../layout/message_fetching";
 
 export default function HomeScreen({ navigation }) {
+    const [amtYears, setAmtYears] = useState(3);
+    let labelYears = [];
+    let amountYears = [{data: []}]
+    const [lineChartData, setLineChartData] = useState(null);
+
+    const fieldOwnerId = 1;
+
+    useEffect(() => {
+        getOverYears();
+    }, [amtYears])
+
+    async function getOverYears(){
+        const currentYear = new Date().getFullYear();
+        for(let i = 0; i < amtYears; i++){
+            const year = currentYear - amtYears + i + 1;
+            try{
+                const result = await DbAPI.getAmountOfFieldOwnerOverYear(fieldOwnerId, year)
+                labelYears.push(JSON.stringify(year));
+                amountYears[0].data.push(result.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        setLineChartData({ labels: labelYears, datasets: amountYears })
+    }
+
     const {user} = useAuthentication();
 
     // Styling (theme)
     const style = useThemedStyles(styles);
 
-    // Data for linechart
+    // Linechart
     const lineChartTitle = "Amount of flowers over the years";
-    const lineChartLabels = ["2018", "2019", "2020", "2021", "2022", "2023", "2024"];
-    const lineChartDataset =  [{data: [Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100]}]
-    const lineChartData = { labels: lineChartLabels, datasets: lineChartDataset }
 
-    // Data for barchart
+    // Barchart
     const barChartTitle = "Amount of flowers this year";
     const barChartLabels = ["January", "February", "March"];
     const barChartDataset = [{data: [Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100, Math.round((Math.random() * 30 + 60) * 100) / 100]}];
@@ -42,6 +71,9 @@ export default function HomeScreen({ navigation }) {
     const paddingCharts = 30;
     // Size of icon
     const size = 40;
+
+    if(!lineChartData) return <Fetching message="Getting data..."/>
+    
     return (
         <View style={style.body}>
             <ScrollView>
@@ -58,6 +90,8 @@ export default function HomeScreen({ navigation }) {
                             data={lineChartData}
                             padding={paddingCharts}
                         />
+                        <TouchableOpacity onPress={() => setAmtYears(amtYears + 1)}><Text>Up</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => setAmtYears(amtYears - 1)}><Text>Down</Text></TouchableOpacity>
                         <Stat_BarChart 
                             title={barChartTitle}
                             data={barChartData}

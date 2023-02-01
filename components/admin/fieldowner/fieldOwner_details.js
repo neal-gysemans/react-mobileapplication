@@ -8,7 +8,7 @@ import { styles } from "../../../styles/styles";
 import Fetching from '../../../layout/message_fetching';
 import Error from '../../../layout/message_error';
 
-import dbAPI from '../../../api/dbAPI';
+import DbAPI from '../../../api/DbAPI';
 import { useState, useEffect } from 'react';
 
 export default function FieldOwnerDetails({ route, navigation }) {
@@ -23,8 +23,8 @@ export default function FieldOwnerDetails({ route, navigation }) {
       const fetchData = async () => {
         setLoading(true);
         try {
-          const result1 = await dbAPI.getFieldOwnerDetails(id);
-          const result2 = await dbAPI.getFarmFromFieldOwner(id);
+          const result1 = await DbAPI.getFieldOwnerDetails(id);
+          const result2 = await DbAPI.getFarmFromFieldOwner(id);
           console.log('details', result2.data);
           setDetails(result1.data[0]);
           setDetails2(result2.data);

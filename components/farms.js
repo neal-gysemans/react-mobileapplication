@@ -20,7 +20,7 @@ import { farmState } from "../store";
 
 import { useState, useEffect } from "react";
 
-import dbAPI from "../api/dbAPI";
+import DbAPI from "../api/DbAPI";
 
 export default function FarmsScreen({ navigation }) {
     // Styling (theme)
