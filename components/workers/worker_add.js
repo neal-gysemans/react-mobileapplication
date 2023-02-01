@@ -9,7 +9,7 @@ import { styles } from "../../styles/styles";
 import Fetching from '../../layout/message_fetching';
 import Error from '../../layout/message_error';
 
-import dbAPI from '../../api/dbAPI';
+import DbAPI from '../../api/DbAPI';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
@@ -44,8 +44,8 @@ export default function AddWorker() {
         const fetchData = async () => {
           setLoading(true);
           try {
-            const permissionresults = await dbAPI.getPermissions();
-            const languageresults = await dbAPI.getLanguages();
+            const permissionresults = await DbAPI.getPermissions();
+            const languageresults = await DbAPI.getLanguages();
 
             console.log('permissions', permissionresults.data);
             console.log('languages', languageresults.data);
@@ -65,7 +65,7 @@ export default function AddWorker() {
 
     async function addWorkerToDB(worker){
         try {
-            dbAPI.addWorker(worker);
+            DbAPI.addWorker(worker);
           } catch (error) {
             console.log('Something went wrong with the database api.', error);
             <Error/>

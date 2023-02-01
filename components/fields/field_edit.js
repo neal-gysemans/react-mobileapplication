@@ -12,7 +12,7 @@ import { styles } from "../../styles/styles";
 // Layout
 import Error from '../../layout/message_error';
 
-import dbAPI from '../../api/DbAPI';
+import DbAPI from '../../api/DbAPI';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -27,7 +27,7 @@ export default function EditField({ navigation }) {
     async function editField(fieldName){
         try {
             console.log(fieldName)
-            dbAPI.editField(fieldName);
+            DbAPI.editField(fieldName);
           } catch (error) {
             console.log('Something went wrong with the database api.', error);
             <Error/>
