@@ -1,3 +1,4 @@
+import { AutoFocus } from "expo-camera";
 import { StyleSheet } from "react-native";
 
 export const text = theme => theme.colors.TEXT;
@@ -49,7 +50,6 @@ export const styles = theme =>
         cameraButton: {
             borderRadius: 50,
             backgroundColor: theme.colors.BACKGROUND,
-            backgroundColor: theme.colors.BACKGROUND,
             width: 50,
             height: 50,
             display: "flex",
@@ -97,10 +97,25 @@ export const styles = theme =>
             left: 25,
             right: 25,
             height: 60,
-            backgroundColor: theme.colors.TEXT,
+            backgroundColor: theme.colors.BACKGROUND,
             display: "flex",
             justifyContent: "center",
             alignItems: "center"
+        },
+        addButton: {
+            padding: 15,
+            textColor: theme.colors.BACKGROUND,
+            backgroundColor: theme.colors.TEXT,
+            width: "100%",
+            borderRadius:10,
+            flex:1,
+            justifyContent: "center",
+        },
+        addButtonText: {
+            color: theme.colors.BACKGROUND,
+            fontSize: 20,
+            marginLeft: 'auto',
+            marginRight: 'auto',
         },
         mb10: {
             marginBottom: 10,
@@ -261,4 +276,46 @@ export const styles = theme =>
         },
         farmInfoListItem:{
         },
+        farmsList:{
+            height: '90%',
+        },
+        listItem: {
+            padding: 16,
+            backgroundColor: theme.colors.BACKGROUND,
+            color: theme.colors.TEXT,
+            margin: 5
+        },
+        textInput: {
+            color: theme.colors.TEXT,
+            backgroundColor: theme.colors.BACKGROUND,
+            borderWidth: 2,
+            borderColor: "gray",
+            padding: 10,
+            borderRadius:10,
+        },
+        fab:{
+            backgroundColor: theme.colors.TEXT,
+            color: theme.colors.BACKGROUND
+        },
+        addLabel:{
+            color: theme.colors.TEXT,
+            fontSize: 15,
+            marginTop: 5
+        },
+        datePicker: {
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+
+        },
+        circle: {
+            width: 60,
+            height: 60,
+            position: 'absolute',
+            bottom: 10,
+            right: 10,
+            borderRadius: 50,
+            justifyContent: 'center',
+            alignItems: 'center',
+         },
+         
     });
